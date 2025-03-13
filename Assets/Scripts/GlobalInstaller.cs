@@ -6,7 +6,7 @@ namespace Kaiju
     {
         public override void InstallBindings()
         {
-
+            Container.BindInterfacesAndSelfTo<InputController>().AsSingle();
         }
     }
 }
