@@ -7,22 +7,22 @@ namespace Kaiju
     {
         [Inject] private readonly IInputController _inputController;
 
-        public virtual void PressA()
+        public virtual void PressA(bool active)
         {
             
         }
 
-        public virtual void PressD()
+        public virtual void PressD(bool active)
         {
             
         }
 
-        public virtual void PressW()
+        public virtual void PressW(bool active)
         {
             
         }
 
-        public virtual void PressS()
+        public virtual void PressS(bool active)
         {
             
         }

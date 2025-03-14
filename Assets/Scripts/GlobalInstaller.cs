@@ -1,3 +1,4 @@
+using UnityEngine;
 using Zenject;
 
 namespace Kaiju
@@ -6,6 +7,8 @@ namespace Kaiju
     {
         public override void InstallBindings()
         {
+            Application.targetFrameRate = 60;
+
             Container.BindInterfacesAndSelfTo<InputController>().AsSingle();
         }
     }

@@ -14,10 +14,18 @@ namespace Kaiju
 
         public void Tick()
         {
-            if (Input.GetKeyDown(KeyCode.A)) _currentController.PressA();
-            if (Input.GetKeyDown(KeyCode.D)) _currentController.PressD();
-            if (Input.GetKeyDown(KeyCode.W)) _currentController.PressW();
-            if (Input.GetKeyDown(KeyCode.S)) _currentController.PressS();
+            if (Input.GetKeyDown(KeyCode.A)) _currentController.PressA(true);
+            if (Input.GetKeyUp(KeyCode.A)) _currentController.PressA(false);
+
+            if (Input.GetKeyDown(KeyCode.D)) _currentController.PressD(true);
+            if (Input.GetKeyUp(KeyCode.D)) _currentController.PressD(false);
+
+            if (Input.GetKeyDown(KeyCode.W)) _currentController.PressW(true);
+            if (Input.GetKeyUp(KeyCode.W)) _currentController.PressW(false);
+
+            if (Input.GetKeyDown(KeyCode.S)) _currentController.PressS(true);
+            if (Input.GetKeyUp(KeyCode.S)) _currentController.PressS(false);
+
             if (Input.GetKeyDown(KeyCode.E)) _currentController.PressE();
             if (Input.GetKeyDown(KeyCode.Space)) _currentController.PressSpace();
         }
