@@ -5,11 +5,11 @@ namespace Kaiju
 {
     public class Player : MonoBehaviour, IController
     {
-        [SerializeField] private PlayerConfig _config;
-        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private PlayerConfig config;
+        [SerializeField] private Rigidbody2D rigidbody;
 
         [Space]
-        [SerializeField] private GameObject pressE_Hint;
+        [SerializeField] private PlayerHintComponent hintComponent;
 
         private Vector2 _moveDirection;
         private Tween _stopMoveTween;
@@ -36,11 +36,11 @@ namespace Kaiju
         {
             if (_isStairs)
             {
-                var newVelocity = _rigidbody.velocity;
+                var newVelocity = rigidbody.velocity;
 
-                newVelocity.y = value * _config.StairsSpeed;
+                newVelocity.y = value * config.StairsSpeed;
 
-                _rigidbody.velocity = newVelocity;
+                rigidbody.velocity = newVelocity;
             }
         }
 
@@ -50,7 +50,7 @@ namespace Kaiju
         {
             if (_enterStation != null)
             {
-                DisplayPressE_Hint(false);
+                hintComponent.DisplayPressE_Hint(false);
 
                 _enterStation.Enter(this);
                 StopMove();
@@ -71,16 +71,16 @@ namespace Kaiju
         private void StopMove()
         {
             _moveDirection = Vector2.zero;
-            var timeToStopMove = Mathf.InverseLerp(0, _config.MaxVelocity, Mathf.Abs(_rigidbody.velocity.x)) * _config.MaxTimeToStopMove;
+            var timeToStopMove = Mathf.InverseLerp(0, config.MaxVelocity, Mathf.Abs(rigidbody.velocity.x)) * config.MaxTimeToStopMove;
 
             _stopMoveTween?.Kill();
-            _stopMoveTween = DOVirtual.Float(_rigidbody.velocity.x, 0, timeToStopMove,
+            _stopMoveTween = DOVirtual.Float(rigidbody.velocity.x, 0, timeToStopMove,
                 value =>
                 {
-                    var newVelocity = _rigidbody.velocity;
+                    var newVelocity = rigidbody.velocity;
                     newVelocity.x = value;
 
-                    _rigidbody.velocity = newVelocity;
+                    rigidbody.velocity = newVelocity;
                 }).SetEase(Ease.Linear).SetAutoKill(this);
         }
 
@@ -88,13 +88,13 @@ namespace Kaiju
         {
             if (_moveDirection == Vector2.zero) return;
 
-            var velocity = _rigidbody.velocity;
+            var velocity = rigidbody.velocity;
 
-            var newVelocity = velocity + _moveDirection * _config.MoveSpeed;
+            var newVelocity = velocity + _moveDirection * config.MoveSpeed;
 
-            newVelocity.x = Mathf.Clamp(newVelocity.x, -_config.MaxVelocity, _config.MaxVelocity);
+            newVelocity.x = Mathf.Clamp(newVelocity.x, -config.MaxVelocity, config.MaxVelocity);
 
-            _rigidbody.velocity = newVelocity;
+            rigidbody.velocity = newVelocity;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -102,13 +102,13 @@ namespace Kaiju
             if (other.CompareTag("Stairs"))
             {
                 _isStairs = true;
-                _cacheGravity = _rigidbody.gravityScale;
-                _rigidbody.gravityScale = 0;
+                _cacheGravity = rigidbody.gravityScale;
+                rigidbody.gravityScale = 0;
             }
 
             if (other.TryGetComponent(out StationBase station))
             {
-                DisplayPressE_Hint(true);
+                hintComponent.DisplayPressE_Hint(true);
 
                 _enterStation = station;
             }
@@ -119,20 +119,15 @@ namespace Kaiju
             if (other.CompareTag("Stairs"))
             {
                 _isStairs = false;
-                _rigidbody.gravityScale = _cacheGravity;
+                rigidbody.gravityScale = _cacheGravity;
             }
 
             if (other.TryGetComponent(out StationBase station))
             {
-                DisplayPressE_Hint(false);
+                hintComponent.DisplayPressE_Hint(false);
 
                 _enterStation = null;
             }
-        }
-
-        private void DisplayPressE_Hint(bool value)
-        {
-            pressE_Hint.SetActive(value);
         }
     }
 }
