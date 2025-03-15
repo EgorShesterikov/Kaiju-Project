@@ -8,10 +8,14 @@ namespace Kaiju
         [SerializeField] private PlayerConfig _config;
         [SerializeField] private Rigidbody2D _rigidbody;
 
+        [Space]
+        [SerializeField] private GameObject pressE_Hint;
+
         private Vector2 _moveDirection;
         private Tween _stopMoveTween;
 
         private bool _isStairs;
+        private float _cacheGravity;
 
         private StationBase _enterStation;
 
@@ -32,14 +36,11 @@ namespace Kaiju
         {
             if (_isStairs)
             {
-                if (value > 0)
-                {
-                    var newVelocity = _rigidbody.velocity;
+                var newVelocity = _rigidbody.velocity;
 
-                    newVelocity.y = value * _config.StairsSpeed;
+                newVelocity.y = value * _config.StairsSpeed;
 
-                    _rigidbody.velocity = newVelocity;
-                }
+                _rigidbody.velocity = newVelocity;
             }
         }
 
@@ -49,6 +50,8 @@ namespace Kaiju
         {
             if (_enterStation != null)
             {
+                DisplayPressE_Hint(false);
+
                 _enterStation.Enter(this);
                 StopMove();
             }
@@ -99,10 +102,14 @@ namespace Kaiju
             if (other.CompareTag("Stairs"))
             {
                 _isStairs = true;
+                _cacheGravity = _rigidbody.gravityScale;
+                _rigidbody.gravityScale = 0;
             }
 
             if (other.TryGetComponent(out StationBase station))
             {
+                DisplayPressE_Hint(true);
+
                 _enterStation = station;
             }
         }
@@ -112,12 +119,20 @@ namespace Kaiju
             if (other.CompareTag("Stairs"))
             {
                 _isStairs = false;
+                _rigidbody.gravityScale = _cacheGravity;
             }
 
             if (other.TryGetComponent(out StationBase station))
             {
+                DisplayPressE_Hint(false);
+
                 _enterStation = null;
             }
+        }
+
+        private void DisplayPressE_Hint(bool value)
+        {
+            pressE_Hint.SetActive(value);
         }
     }
 }

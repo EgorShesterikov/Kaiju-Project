@@ -5,16 +5,9 @@ namespace Kaiju
 {
     public class StationBase : MonoBehaviour, IController
     {
-        [SerializeField] private GameObject enterInputHint;
-
         [Inject] private readonly IInputController _inputController;
 
         private IController _enterController;
-
-        public void DisplayEnterInputHint(bool value)
-        {
-            enterInputHint.SetActive(value);
-        }
 
         public void Enter(IController player)
         {

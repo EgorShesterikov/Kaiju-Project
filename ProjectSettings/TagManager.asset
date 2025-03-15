@@ -4,8 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ship
-  - asteroid
   - Stairs
   layers:
   - Default
