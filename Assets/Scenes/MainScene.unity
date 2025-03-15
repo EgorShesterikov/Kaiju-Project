@@ -1106,7 +1106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -651348017
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270, type: 3}
   m_Color: {r: 0.41509432, g: 0.26403418, b: 0.115521535, a: 1}
   m_FlipX: 0
@@ -1867,6 +1867,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3276696508036901437, guid: c77310ad096a55e48bf6dc9d77350ef9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276696508036901437, guid: c77310ad096a55e48bf6dc9d77350ef9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276696508036901437, guid: c77310ad096a55e48bf6dc9d77350ef9, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -651348017
+      objectReference: {fileID: 0}
     - target: {fileID: 5399581938554105751, guid: c77310ad096a55e48bf6dc9d77350ef9, type: 3}
       propertyPath: pressE_Hint
       value: 
@@ -1902,57 +1914,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 276034033}
     m_Modifications:
-    - target: {fileID: 2595509811576282961, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.Array.data[1].x
-      value: -2.3779566
-      objectReference: {fileID: 0}
-    - target: {fileID: 2595509811576282961, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.Array.data[1].y
-      value: -1.9385926
-      objectReference: {fileID: 0}
-    - target: {fileID: 2595509811576282961, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.Array.data[2].x
-      value: -2.3710794
-      objectReference: {fileID: 0}
-    - target: {fileID: 2595509811576282961, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.Array.data[2].y
-      value: -1.266737
-      objectReference: {fileID: 0}
-    - target: {fileID: 2595509811576282961, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.Array.data[17].x
-      value: 2.1370468
-      objectReference: {fileID: 0}
-    - target: {fileID: 2595509811576282961, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.Array.data[17].y
-      value: -1.3720496
-      objectReference: {fileID: 0}
-    - target: {fileID: 2595509811576282961, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.Array.data[18].x
-      value: 2.1392646
-      objectReference: {fileID: 0}
-    - target: {fileID: 2595509811576282961, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.Array.data[18].y
-      value: -1.929831
-      objectReference: {fileID: 0}
-    - target: {fileID: 2798029087374427438, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Size.y
-      value: 0.24934655
-      objectReference: {fileID: 0}
-    - target: {fileID: 2798029087374427438, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.019022193
-      objectReference: {fileID: 0}
     - target: {fileID: 7611254515308283933, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
       propertyPath: m_Name
       value: Combat Robot
-      objectReference: {fileID: 0}
-    - target: {fileID: 8620281722589790197, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Size.y
-      value: 0.25043342
-      objectReference: {fileID: 0}
-    - target: {fileID: 8620281722589790197, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.018478766
       objectReference: {fileID: 0}
     - target: {fileID: 9166632218763226271, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
       propertyPath: m_LocalPosition.x
