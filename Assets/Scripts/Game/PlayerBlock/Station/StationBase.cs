@@ -5,9 +5,16 @@ namespace Kaiju
 {
     public class StationBase : MonoBehaviour, IController
     {
+        [SerializeField] private GameObject enterInputHint;
+
         [Inject] private readonly IInputController _inputController;
 
         private IController _enterController;
+
+        public void DisplayEnterInputHint(bool value)
+        {
+            enterInputHint.SetActive(value);
+        }
 
         public void Enter(IController player)
         {
@@ -15,26 +22,17 @@ namespace Kaiju
             _enterController = player;
         }
 
-        public void Exit()
+        private void Exit()
         {
             _inputController.SetObjectControl(_enterController);
             _enterController = null;
         }
 
-        public virtual void PressInstantVertical(float value)
-        {
+        public virtual void PressInstantVertical(float value) { }
 
-        }
+        public virtual void PressInstantHorizontal(float value) { }
 
-        public virtual void PressInstantHorizontal(float value)
-        {
-
-        }
-
-        public virtual void PressSpace()
-        {
-            
-        }
+        public virtual void PressSpace(bool active) { }
 
         public virtual void PressE()
         {

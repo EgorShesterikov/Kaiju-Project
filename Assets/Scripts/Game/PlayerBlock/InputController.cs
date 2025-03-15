@@ -18,7 +18,9 @@ namespace Kaiju
             _currentController.PressInstantVertical(Input.GetAxis("InstantVertical"));
 
             if (Input.GetKeyDown(KeyCode.E)) _currentController.PressE();
-            if (Input.GetKeyDown(KeyCode.Space)) _currentController.PressSpace();
+
+            if (Input.GetKeyDown(KeyCode.Space)) _currentController.PressSpace(true);
+            if (Input.GetKeyUp(KeyCode.Space)) _currentController.PressSpace(false);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Kaiju
     {
         void PressInstantVertical(float value);
         void PressInstantHorizontal(float value);
-        void PressSpace();
+        void PressSpace(bool active);
         void PressE();
     }
 }

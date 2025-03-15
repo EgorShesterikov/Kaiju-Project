@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defe94e88d6f00e47910018502a0e45e, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  moveSpeed: 0.25
-  maxVelocity: 2.5
-  maxTimeToStopMove: 0.15
-  jumpPower: 225
+  moveSpeed: 0.7
+  maxVelocity: 1.72
+  maxTimeToStopMove: 0.1
+  stairsSpeed: 3

@@ -10,12 +10,12 @@ namespace Kaiju
         [SerializeField] private float maxTimeToStopMove;
 
         [Space]
-        [SerializeField] private float jumpPower;
+        [SerializeField] private float stairsSpeed;
 
         public float MoveSpeed => moveSpeed;
         public float MaxVelocity => maxVelocity;
         public float MaxTimeToStopMove => maxTimeToStopMove;
 
-        public float JumpPower => jumpPower;
+        public float StairsSpeed => stairsSpeed;
     }
 }

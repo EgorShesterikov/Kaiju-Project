@@ -11,32 +11,39 @@ namespace Kaiju
         private Vector2 _moveDirection;
         private Tween _stopMoveTween;
 
-        private bool _isGrounded;
+        private bool _isStairs;
 
         private StationBase _enterStation;
 
         public void PressInstantHorizontal(float value)
         {
-            if (Mathf.Approximately(value, 0))
-            {
-                StopMove();
-            }
-            else
+            if (!Mathf.Approximately(value, 0))
             {
                 var moveDirection = Vector2.right * value;
                 StartMove(moveDirection);
+            }
+            else
+            {
+                StopMove();
             }
         }
 
         public void PressInstantVertical(float value)
         {
-            
+            if (_isStairs)
+            {
+                if (value > 0)
+                {
+                    var newVelocity = _rigidbody.velocity;
+
+                    newVelocity.y = value * _config.StairsSpeed;
+
+                    _rigidbody.velocity = newVelocity;
+                }
+            }
         }
 
-        public void PressSpace()
-        {
-            _rigidbody.AddForce(Vector2.up * _config.JumpPower);
-        }
+        public void PressSpace(bool active) { }
 
         public void PressE()
         {
@@ -55,7 +62,6 @@ namespace Kaiju
         private void StartMove(Vector2 moveDirection)
         {
             _stopMoveTween?.Kill();
-
             _moveDirection = moveDirection;
         }
 
@@ -90,6 +96,11 @@ namespace Kaiju
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.CompareTag("Stairs"))
+            {
+                _isStairs = true;
+            }
+
             if (other.TryGetComponent(out StationBase station))
             {
                 _enterStation = station;
@@ -98,6 +109,11 @@ namespace Kaiju
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            if (other.CompareTag("Stairs"))
+            {
+                _isStairs = false;
+            }
+
             if (other.TryGetComponent(out StationBase station))
             {
                 _enterStation = null;
