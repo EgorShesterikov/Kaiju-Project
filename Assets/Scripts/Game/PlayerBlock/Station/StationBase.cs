@@ -7,24 +7,28 @@ namespace Kaiju
     {
         [Inject] private readonly IInputController _inputController;
 
-        public virtual void PressA(bool active)
+        private IController _enterController;
+
+        public void Enter(IController player)
         {
-            
+            _inputController.SetObjectControl(this);
+            _enterController = player;
         }
 
-        public virtual void PressD(bool active)
+        public void Exit()
         {
-            
+            _inputController.SetObjectControl(_enterController);
+            _enterController = null;
         }
 
-        public virtual void PressW(bool active)
+        public virtual void PressInstantVertical(float value)
         {
-            
+
         }
 
-        public virtual void PressS(bool active)
+        public virtual void PressInstantHorizontal(float value)
         {
-            
+
         }
 
         public virtual void PressSpace()
@@ -34,7 +38,7 @@ namespace Kaiju
 
         public virtual void PressE()
         {
-            
+            Exit();
         }
     }
 }

@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using Zenject;
 
 namespace Kaiju
 {
@@ -9,31 +8,29 @@ namespace Kaiju
         [SerializeField] private PlayerConfig _config;
         [SerializeField] private Rigidbody2D _rigidbody;
 
-        [Inject] private readonly IInputController _inputController;
-
         private Vector2 _moveDirection;
         private Tween _stopMoveTween;
 
         private bool _isGrounded;
 
-        public void PressA(bool active)
+        private StationBase _enterStation;
+
+        public void PressInstantHorizontal(float value)
         {
-            SetMove(active, Vector2.left);
+            if (Mathf.Approximately(value, 0))
+            {
+                StopMove();
+            }
+            else
+            {
+                var moveDirection = Vector2.right * value;
+                StartMove(moveDirection);
+            }
         }
 
-        public void PressD(bool active)
+        public void PressInstantVertical(float value)
         {
-            SetMove(active, Vector2.right);
-        }
-
-        public void PressW(bool active)
-        {
-            Debug.LogError("W");
-        }
-
-        public void PressS(bool active)
-        {
-            Debug.LogError("S");
+            
         }
 
         public void PressSpace()
@@ -43,24 +40,16 @@ namespace Kaiju
 
         public void PressE()
         {
-            Debug.LogError("E");
+            if (_enterStation != null)
+            {
+                _enterStation.Enter(this);
+                StopMove();
+            }
         }
 
         private void FixedUpdate()
         {
             CalculateVelocity();
-        }
-
-        private void SetMove(bool active, Vector2 targetVector)
-        {
-            if (active)
-            {
-                StartMove(targetVector);
-            }
-            else if (_moveDirection == targetVector)
-            {
-                StopMove();
-            }
         }
 
         private void StartMove(Vector2 moveDirection)
@@ -99,5 +88,20 @@ namespace Kaiju
             _rigidbody.velocity = newVelocity;
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.TryGetComponent(out StationBase station))
+            {
+                _enterStation = station;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.TryGetComponent(out StationBase station))
+            {
+                _enterStation = null;
+            }
+        }
     }
 }
