@@ -5,8 +5,11 @@ namespace Kaiju
 {
     public class Player : MonoBehaviour, IController
     {
+        private const string IS_MOVE_PARAM = "IsMove";
+
         [SerializeField] private PlayerConfig config;
         [SerializeField] private Rigidbody2D rigidbody;
+        [SerializeField] private Animator animator;
 
         [Space]
         [SerializeField] private PlayerHintComponent hintComponent;
@@ -66,6 +69,23 @@ namespace Kaiju
         {
             _stopMoveTween?.Kill();
             _moveDirection = moveDirection;
+
+            animator.SetBool(IS_MOVE_PARAM, true);
+
+            Unwrap(moveDirection);
+        }
+
+        private void Unwrap(Vector2 moveDirection)
+        {
+            var localScale = transform.localScale;
+
+            if (moveDirection.x > 0 && localScale.x < 0
+                || moveDirection.x < 0 && localScale.x > 0)
+            {
+                localScale.x *= -1;
+            }
+
+            transform.localScale = localScale;
         }
 
         private void StopMove()
@@ -81,7 +101,8 @@ namespace Kaiju
                     newVelocity.x = value;
 
                     rigidbody.velocity = newVelocity;
-                }).SetEase(Ease.Linear).SetAutoKill(this);
+                }).OnComplete(() => animator.SetBool(IS_MOVE_PARAM, false))
+                .SetEase(Ease.Linear).SetAutoKill(this);
         }
 
         private void CalculateVelocity()
