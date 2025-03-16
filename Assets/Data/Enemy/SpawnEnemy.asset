@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb5cbeb299f49158c3215ae19c04dde, type: 3}
+  m_Name: SpawnEnemy
+  m_EditorClassIdentifier: 
+  baseSpawnCooldown: 5
+  createdEnemyGroups:
+  - additionSpawnCooldownRange: {x: 0, y: 0}
+    additionEnergyPerPercentRange: {x: 1, y: 1.5}
+    groups:
+    - createEnemyData:
+      - enemyType: 1
+        count: 3
+      - enemyType: 0
+        count: 5
+    - createEnemyData:
+      - enemyType: 1
+        count: 5
+      - enemyType: 1
+        count: 3
+    - createEnemyData:
+      - enemyType: 1
+        count: 7
+  - additionSpawnCooldownRange: {x: 0, y: 0}
+    additionEnergyPerPercentRange: {x: 0.5, y: 1}
+    groups:
+    - createEnemyData:
+      - enemyType: 1
+        count: 2
+      - enemyType: 2
+        count: 1
+    - createEnemyData:
+      - enemyType: 1
+        count: 3
+      - enemyType: 2
+        count: 2
+    - createEnemyData:
+      - enemyType: 1
+        count: 4
+      - enemyType: 2
+        count: 3
+  - additionSpawnCooldownRange: {x: 3, y: 5}
+    additionEnergyPerPercentRange: {x: 0, y: 0}
+    groups:
+    - createEnemyData:
+      - enemyType: 1
+        count: 3
+      - enemyType: 2
+        count: 3
+    - createEnemyData:
+      - enemyType: 1
+        count: 3
+      - enemyType: 2
+        count: 3
+      - enemyType: 3
+        count: 1
+    - createEnemyData:
+      - enemyType: 1
+        count: 2
+      - enemyType: 3
+        count: 2
+  - additionSpawnCooldownRange: {x: 7, y: 10}
+    additionEnergyPerPercentRange: {x: 0, y: 0}
+    groups:
+    - createEnemyData:
+      - enemyType: 1
+        count: 3
+      - enemyType: 4
+        count: 1
+      - enemyType: 3
+        count: 2
+    - createEnemyData:
+      - enemyType: 2
+        count: 3
+      - enemyType: 4
+        count: 2
+      - enemyType: 3
+        count: 1
+    - createEnemyData:
+      - enemyType: 4
+        count: 2
+      - enemyType: 3
+        count: 1
+  - additionSpawnCooldownRange: {x: 10, y: 12}
+    additionEnergyPerPercentRange: {x: 0, y: 0}
+    groups:
+    - createEnemyData:
+      - enemyType: 2
+        count: 2
+      - enemyType: 5
+        count: 1
+    - createEnemyData:
+      - enemyType: 2
+        count: 3
+      - enemyType: 4
+        count: 2
+    - createEnemyData:
+      - enemyType: 4
+        count: 1
+      - enemyType: 5
+        count: 1
+  - additionSpawnCooldownRange: {x: 10, y: 12}
+    additionEnergyPerPercentRange: {x: 0, y: 0}
+    groups:
+    - createEnemyData:
+      - enemyType: 2
+        count: 2
+      - enemyType: 4
+        count: 2
+    - createEnemyData:
+      - enemyType: 2
+        count: 1
+      - enemyType: 5
+        count: 1
+    - createEnemyData:
+      - enemyType: 4
+        count: 1
+      - enemyType: 5
+        count: 1
