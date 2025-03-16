@@ -7,18 +7,21 @@ namespace Kaiju
     {
         [Inject] private readonly IInputController _inputController;
 
-        private IController _enterController;
+        private Player _player;
+        private Vector3 _offsetPositionPlayer;
 
-        public void Enter(IController player)
+        public virtual void Enter(Player player)
         {
             _inputController.SetObjectControl(this);
-            _enterController = player;
+            _player = player;
+            _offsetPositionPlayer = _player.transform.position - transform.position;
         }
 
-        private void Exit()
+        protected virtual void Exit()
         {
-            _inputController.SetObjectControl(_enterController);
-            _enterController = null;
+            _inputController.SetObjectControl(_player);
+            _player = null;
+            _offsetPositionPlayer = Vector3.zero;
         }
 
         public virtual void PressInstantVertical(float value) { }
@@ -30,6 +33,14 @@ namespace Kaiju
         public virtual void PressE()
         {
             Exit();
+        }
+
+        private void Update()
+        {
+            if (_player)
+            {
+                _player.transform.position = transform.position + _offsetPositionPlayer;
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Kaiju
         private float _cacheGravity;
 
         private StationBase _enterStation;
-
+        
         public void PressInstantHorizontal(float value)
         {
             if (!Mathf.Approximately(value, 0))
@@ -54,7 +54,6 @@ namespace Kaiju
             if (_enterStation != null)
             {
                 hintComponent.DisplayPressE_Hint(false);
-
                 _enterStation.Enter(this);
                 StopMove();
             }
@@ -72,10 +71,10 @@ namespace Kaiju
 
             animator.SetBool(IS_MOVE_PARAM, true);
 
-            Unwrap(moveDirection);
+            TurnScale(moveDirection);
         }
 
-        private void Unwrap(Vector2 moveDirection)
+        private void TurnScale(Vector2 moveDirection)
         {
             var localScale = transform.localScale;
 

@@ -114,7 +114,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 737}
-    spritePosition: {x: 57, y: 411}
+    spritePosition: {x: 54, y: 412}
   - name: right turbine
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -122,7 +122,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 94
+      x: 91
       y: 737
       width: 80
       height: 82
@@ -134,8 +134,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 94, y: 737}
-    spritePosition: {x: 541, y: 411}
+    uvTransform: {x: 91, y: 737}
+    spritePosition: {x: 547, y: 416}
   - name: left turrel
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -143,7 +143,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 182
+      x: 176
       y: 737
       width: 40
       height: 57
@@ -155,7 +155,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 182, y: 737}
+    uvTransform: {x: 176, y: 737}
     spritePosition: {x: 54, y: 568}
   - name: right turrel
     originalName: 
@@ -164,7 +164,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 216
+      x: 210
       y: 737
       width: 40
       height: 110
@@ -176,7 +176,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 216, y: 737}
+    uvTransform: {x: 210, y: 737}
     spritePosition: {x: 600, y: 568}
   - name: CombatRobotTestBlockout
     originalName: 
@@ -299,7 +299,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: 570a57969655b244fa9601bb244a0575
     layerID: 4
-    mosaicPosition: {x: 94, y: 737}
+    mosaicPosition: {x: 91, y: 737}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -309,7 +309,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: 26cc7d3817b4a334298800a56a2efda5
     layerID: 5
-    mosaicPosition: {x: 182, y: 737}
+    mosaicPosition: {x: 176, y: 737}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -319,7 +319,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: dd6ec4b352da62a4798ecdefab65c3d0
     layerID: 6
-    mosaicPosition: {x: 216, y: 737}
+    mosaicPosition: {x: 210, y: 737}
     flatten: 0
     isImported: 1
     isVisible: 1
