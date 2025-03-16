@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedEngineRotation: 3
   clampAngleEngineRotation: 0.5
-  powerEngine: 0.2
-  timeToFullMove: 0.5
+  moveSpeed: 0.1
+  timeToFullMove: 5
   timeToStopMove: 1

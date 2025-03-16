@@ -17,7 +17,7 @@ namespace Kaiju
         private bool _isActiveEngine;
         private float _engineRotation;
 
-        private float _currentEngie;
+        private float _currentSpeed;
 
         private Tween _changeMoveTween;
 
@@ -50,39 +50,35 @@ namespace Kaiju
             _isActiveEngine = true;
 
             _changeMoveTween?.Kill();
-            _changeMoveTween = DOVirtual.Float(_currentEngie, config.PowerEngine, config.TimeToFullMove,
+            _changeMoveTween = DOVirtual.Float(_currentSpeed, config.MoveSpeed, config.TimeToFullMove,
                 value =>
                 {
-                    _currentEngie = value;
+                    _currentSpeed = value;
                 })
                 .SetEase(Ease.Linear).SetAutoKill(this);
         }
 
         private void IsDeActiveEngine()
         {
-            _isActiveEngine = false;
-
             _changeMoveTween?.Kill();
-            _changeMoveTween = DOVirtual.Float(_currentEngie, 0, config.TimeToStopMove,
+            _changeMoveTween = DOVirtual.Float(_currentSpeed, 0, config.TimeToStopMove,
                     value =>
                     {
-                        _currentEngie = value;
-                        CalculateForce();
-                    })
+                        _currentSpeed = value;
+                    }).OnComplete(() => _isActiveEngine = false)
                 .SetEase(Ease.Linear).SetAutoKill(this);
         }
 
         private void FixedUpdate()
         {
-            if (_isActiveEngine)
-            {
-                CalculateForce();
-            }
+            CalculateForce();
         }
 
         private void CalculateForce()
         {
-            combatRobot.transform.position += Vector3.right * -_engineRotation * _currentEngie;
+            if (!_isActiveEngine) return;
+
+            combatRobot.transform.position += Vector3.right * -_engineRotation * _currentSpeed;
         }
 
         private void RotateEngine(float value)
