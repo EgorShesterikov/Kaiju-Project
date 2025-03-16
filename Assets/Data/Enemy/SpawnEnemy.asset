@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: SpawnEnemy
   m_EditorClassIdentifier: 
   baseSpawnCooldown: 5
+  _allEnemyData:
+  - {fileID: 11400000, guid: 436e4439b8c0d9d4086a238e67bcbf31, type: 2}
+  - {fileID: 11400000, guid: 0a833aef819c04b4995ba0fd341ffc65, type: 2}
+  - {fileID: 11400000, guid: d9f20b7b3f6fe7f4088df11ceb6f8acf, type: 2}
+  - {fileID: 11400000, guid: fb762e793b615b4448f115e1d9396ab4, type: 2}
+  - {fileID: 11400000, guid: 04490d7d1cc3fc745ace54821b01eb28, type: 2}
+  - {fileID: 11400000, guid: 47a1cf5b40c12844e83cf5d0c9a585b0, type: 2}
   createdEnemyGroups:
-  - additionSpawnCooldownRange: {x: 0, y: 0}
+  - playerHPRange: {x: 0, y: 20}
+    additionSpawnCooldownRange: {x: 0, y: 0}
     additionEnergyPerPercentRange: {x: 1, y: 1.5}
     groups:
     - createEnemyData:
@@ -30,7 +38,8 @@ MonoBehaviour:
     - createEnemyData:
       - enemyType: 1
         count: 7
-  - additionSpawnCooldownRange: {x: 0, y: 0}
+  - playerHPRange: {x: 21, y: 35}
+    additionSpawnCooldownRange: {x: 0, y: 0}
     additionEnergyPerPercentRange: {x: 0.5, y: 1}
     groups:
     - createEnemyData:
@@ -48,7 +57,8 @@ MonoBehaviour:
         count: 4
       - enemyType: 2
         count: 3
-  - additionSpawnCooldownRange: {x: 3, y: 5}
+  - playerHPRange: {x: 36, y: 55}
+    additionSpawnCooldownRange: {x: 3, y: 5}
     additionEnergyPerPercentRange: {x: 0, y: 0}
     groups:
     - createEnemyData:
@@ -68,7 +78,8 @@ MonoBehaviour:
         count: 2
       - enemyType: 3
         count: 2
-  - additionSpawnCooldownRange: {x: 7, y: 10}
+  - playerHPRange: {x: 56, y: 70}
+    additionSpawnCooldownRange: {x: 7, y: 10}
     additionEnergyPerPercentRange: {x: 0, y: 0}
     groups:
     - createEnemyData:
@@ -90,7 +101,8 @@ MonoBehaviour:
         count: 2
       - enemyType: 3
         count: 1
-  - additionSpawnCooldownRange: {x: 10, y: 12}
+  - playerHPRange: {x: 71, y: 85}
+    additionSpawnCooldownRange: {x: 10, y: 12}
     additionEnergyPerPercentRange: {x: 0, y: 0}
     groups:
     - createEnemyData:
@@ -108,7 +120,8 @@ MonoBehaviour:
         count: 1
       - enemyType: 5
         count: 1
-  - additionSpawnCooldownRange: {x: 10, y: 12}
+  - playerHPRange: {x: 86, y: 100}
+    additionSpawnCooldownRange: {x: 10, y: 12}
     additionEnergyPerPercentRange: {x: 0, y: 0}
     groups:
     - createEnemyData:
