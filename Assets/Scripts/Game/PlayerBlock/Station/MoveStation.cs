@@ -17,7 +17,9 @@ namespace Kaiju
         private bool _isActiveEngine;
         private float _engineRotation;
 
-        private Tween _stopMoveTween;
+        private float _currentEngie;
+
+        private Tween _changeMoveTween;
 
         public override void PressInstantHorizontal(float value)
         {
@@ -45,43 +47,42 @@ namespace Kaiju
 
         private void IsActiveEngine()
         {
-            _stopMoveTween?.Kill();
-
             _isActiveEngine = true;
+
+            _changeMoveTween?.Kill();
+            _changeMoveTween = DOVirtual.Float(_currentEngie, config.PowerEngine, config.TimeToFullMove,
+                value =>
+                {
+                    _currentEngie = value;
+                })
+                .SetEase(Ease.Linear).SetAutoKill(this);
         }
 
         private void IsDeActiveEngine()
         {
             _isActiveEngine = false;
 
-            var timeToStopMove = Mathf.InverseLerp(0, config.MaxVelocity, Mathf.Abs(combatRobot.Rigidbody2D.velocity.x)) * config.MaxTimeToStopMove;
-
-            _stopMoveTween?.Kill();
-            _stopMoveTween = DOVirtual.Float(combatRobot.Rigidbody2D.velocity.x, 0, timeToStopMove,
+            _changeMoveTween?.Kill();
+            _changeMoveTween = DOVirtual.Float(_currentEngie, 0, config.TimeToStopMove,
                     value =>
                     {
-                        var newVelocity = combatRobot.Rigidbody2D.velocity;
-                        newVelocity.x = value;
-
-                        combatRobot.Rigidbody2D.velocity = newVelocity;
+                        _currentEngie = value;
+                        CalculateForce();
                     })
                 .SetEase(Ease.Linear).SetAutoKill(this);
         }
 
         private void FixedUpdate()
         {
-            CalculateForce();
+            if (_isActiveEngine)
+            {
+                CalculateForce();
+            }
         }
 
         private void CalculateForce()
         {
-            if (!_isActiveEngine) return;
-
-            combatRobot.Rigidbody2D.AddForce(Vector2.right * -_engineRotation * config.PowerEngine);
-
-            var newVelocity = combatRobot.Rigidbody2D.velocity;
-            newVelocity.x = Mathf.Clamp(newVelocity.x, -config.MaxVelocity, config.MaxVelocity);
-            combatRobot.Rigidbody2D.velocity = newVelocity;
+            combatRobot.transform.position += Vector3.right * -_engineRotation * _currentEngie;
         }
 
         private void RotateEngine(float value)
