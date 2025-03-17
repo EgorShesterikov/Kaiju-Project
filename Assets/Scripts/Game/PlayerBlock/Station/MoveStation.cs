@@ -83,14 +83,14 @@ namespace Kaiju
 
         private void RotateEngine(float value)
         {
-            var rotation = leftEngine.rotation;
+            var rotation = leftEngine.localRotation;
             rotation.z += config.SpeedEngineRotation * value * Time.fixedDeltaTime;
             rotation.z = Mathf.Clamp(rotation.z, -config.ClampAngleEngineRotation, config.ClampAngleEngineRotation);
 
             _engineRotation = rotation.z;
 
-            leftEngine.rotation = rotation;
-            rightEngine.rotation = rotation;
+            leftEngine.localRotation = rotation;
+            rightEngine.localRotation = rotation;
         }
     }
 }

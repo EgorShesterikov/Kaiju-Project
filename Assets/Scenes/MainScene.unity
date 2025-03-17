@@ -1742,29 +1742,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat Robot
       objectReference: {fileID: 0}
-    - target: {fileID: 5393259037769326399, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Size.y
-      value: 0.363293
-      objectReference: {fileID: 0}
-    - target: {fileID: 5393259037769326399, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.04564122
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123412469909826542, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Size.y
-      value: 0.36482066
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123412469909826542, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.04487738
-      objectReference: {fileID: 0}
     - target: {fileID: 7275539755167261926, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7275539755167261926, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.9
+      value: -0.32
       objectReference: {fileID: 0}
     - target: {fileID: 7275539755167261926, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
       propertyPath: m_LocalPosition.z
