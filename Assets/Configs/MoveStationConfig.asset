@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad3820dcf89e25468f17020c5292f22, type: 3}
   m_Name: MoveStationConfig
   m_EditorClassIdentifier: 
-  speedEngineRotation: 3
+  speedEngineRotation: 2
   clampAngleEngineRotation: 0.5
   moveSpeed: 0.1
   timeToFullMove: 5
