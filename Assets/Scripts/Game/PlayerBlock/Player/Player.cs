@@ -39,6 +39,20 @@ namespace Kaiju
         {
             if (_isStairs)
             {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f);
+
+                if (hit.collider != null)
+                {
+                    if (!hit.collider.CompareTag("Stairs") && value < 0)
+                    {
+                        return;
+                    }
+                }
+                else if (value < 0)
+                {
+                    return;
+                }
+
                 var newVelocity = rigidbody2D.velocity;
 
                 newVelocity.y = value * config.StairsSpeed;
