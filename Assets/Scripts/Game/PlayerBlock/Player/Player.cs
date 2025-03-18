@@ -43,14 +43,10 @@ namespace Kaiju
 
                 if (hit.collider != null)
                 {
-                    if (!hit.collider.CompareTag("Stairs") && value < 0)
+                    if (hit.collider.CompareTag("Ground") && value < 0)
                     {
                         return;
                     }
-                }
-                else if (value < 0)
-                {
-                    return;
                 }
 
                 var newVelocity = rigidbody2D.velocity;
