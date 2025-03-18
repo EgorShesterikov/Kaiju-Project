@@ -7,18 +7,18 @@ namespace Kaiju
     {
         [Inject] private readonly IInputController _inputController;
 
-        private IController _enterController;
+        private IController _player;
 
-        public void Enter(IController player)
+        public virtual void Enter(IController player)
         {
             _inputController.SetObjectControl(this);
-            _enterController = player;
+            _player = player;
         }
 
-        private void Exit()
+        protected virtual void Exit()
         {
-            _inputController.SetObjectControl(_enterController);
-            _enterController = null;
+            _inputController.SetObjectControl(_player);
+            _player = null;
         }
 
         public virtual void PressInstantVertical(float value) { }
