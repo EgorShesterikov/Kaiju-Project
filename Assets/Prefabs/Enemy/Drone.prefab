@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8955360835758421997}
   - component: {fileID: 5018864397314138499}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,10 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3097408670935513982}
-  - component: {fileID: 4542781717331356205}
   - component: {fileID: 8232003815468822120}
   - component: {fileID: 927579694516032165}
-  m_Layer: 0
+  - component: {fileID: 5458851405227190210}
+  m_Layer: 6
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,18 +121,6 @@ Transform:
   - {fileID: 8955360835758421997}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4542781717331356205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3333302331841023876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c286f6d8b08458ca1f05898098c81b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &8232003815468822120
 Rigidbody2D:
   serializedVersion: 4
@@ -205,6 +193,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &5458851405227190210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3333302331841023876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c5410b0745455fbfad29b559df15d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  _spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &5602715790808424749
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4599834432480506670}
   - component: {fileID: 6256945253858829232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5979268828895709022}
   - component: {fileID: 2930638523064801025}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

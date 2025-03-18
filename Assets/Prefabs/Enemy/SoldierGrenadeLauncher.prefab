@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3897172467516223734}
   - component: {fileID: 6547847923894515576}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,10 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2928707891164086533}
-  - component: {fileID: 636611672746538681}
   - component: {fileID: 802842429350468775}
   - component: {fileID: 3597451334897735447}
-  m_Layer: 0
+  - component: {fileID: 7374189034580658096}
+  m_Layer: 6
   m_Name: SoldierGrenadeLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -119,18 +119,6 @@ Transform:
   - {fileID: 7373559009099704872}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &636611672746538681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2553130326779734499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c286f6d8b08458ca1f05898098c81b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &802842429350468775
 Rigidbody2D:
   serializedVersion: 4
@@ -193,6 +181,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.1291539}
   m_Size: {x: 0.1799725, y: 0.2691231}
   m_Direction: 0
+--- !u!114 &7374189034580658096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2553130326779734499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4082a49ad67442a29971a1e9175a6121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  _spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &3585009991676116569
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8170141283594513494}
   - component: {fileID: 8686971262764047720}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HintComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806985081159861644}
   - component: {fileID: 7328027552926281893}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PressE_Hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7373559009099704872}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}

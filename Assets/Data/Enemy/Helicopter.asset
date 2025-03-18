@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbab9c9bc543514d804bd8e9081f14d, type: 3}
   m_Name: Helicopter
   m_EditorClassIdentifier: 
-  enemyType: 0
+  enemyType: 5
   damage: 5
   attackCooldownRange: {x: 2, y: 2}
   projectilePerAttackRange: {x: 3, y: 3}
   projectileSpeed: 0.65
   moveSpeedRange: {x: 0.7, y: 1.5}
   energyPerPercentRange: {x: 0, y: 0}
-  prefab: {fileID: 815582894967743676, guid: d44b169f0804b214297b5c129abd053c, type: 3}
+  prefab: {fileID: 8097891715508509881, guid: d44b169f0804b214297b5c129abd053c, type: 3}

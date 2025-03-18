@@ -13,7 +13,6 @@ namespace Game.EnemyBlock.Controllers
 
 		[SerializeField] private Transform robotTransform;
 		[SerializeField] private SpawnEnemyData _enemyData;
-		[SerializeField] private UnitSpawnPointView[] _spawnPointViews;
 
 		private UnitPool _pool = new UnitPool();
 		private float _delaySpawned;
@@ -27,7 +26,7 @@ namespace Game.EnemyBlock.Controllers
 		//TODO NEED USE INFO FROM PLAYER
 		private float GetCurrentPlayerHP()
 		{
-			return Random.Range(0, 100f);
+			return Random.Range(0, 20f);
 		}
 
 		private void InitSpawn()
@@ -49,13 +48,14 @@ namespace Game.EnemyBlock.Controllers
 			var hp = GetCurrentPlayerHP();
 
 			EnemyGroupsData groups = null;
-			for (int i = 0; i < _enemyData.CreatedEnemyGroups.Count; i++)
+			for (int i = _enemyData.CreatedEnemyGroups.Count - 1; i >= 0; i--)
 			{
 				var emnemy = _enemyData.CreatedEnemyGroups[i];
 
-				if (hp >= emnemy.PlayerHPRange.x && emnemy.PlayerHPRange.y <= hp)
+				if (hp >= emnemy.PlayerHPRange.x && hp <= emnemy.PlayerHPRange.y)
 				{
 					groups = emnemy;
+					break;
 				}
 			}
 			// var groups = _enemyData.CreatedEnemyGroups.FirstOrDefault(x =>
@@ -101,12 +101,21 @@ namespace Game.EnemyBlock.Controllers
 		private void InitEnemy(EnemyView enemyView, float bonusEnergy)
 		{
 			enemyView.SetBonusEnergy(bonusEnergy);
-			enemyView.SetSpawnPoint(GetRandomSpawnPoint());
+			enemyView.SetSpawnPosition(robotTransform, GetOutOfViewPosition());
 		}
 
-		private UnitSpawnPointView GetRandomSpawnPoint()
+		private Vector3 GetOutOfViewPosition()
 		{
-			return _spawnPointViews[Random.Range(0, _spawnPointViews.Length)];
+			Vector3 centerScreen = Camera.main.transform.position + Camera.main.transform.forward * 10;
+
+			float height = 2f * 10 * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
+			float width = height * Camera.main.aspect;
+
+			float randomX = Random.Range(-width / 2f, width / 2f);
+
+			float outOfViewX = (randomX > 0) ? (centerScreen.x + width / 2f + 1f) : (centerScreen.x - width / 2f - 1f);
+
+			return new Vector3(outOfViewX, centerScreen.y, centerScreen.z);
 		}
 	}
 }

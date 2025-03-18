@@ -19,4 +19,4 @@ MonoBehaviour:
   projectileSpeed: 0.75
   moveSpeedRange: {x: 0.75, y: 1}
   energyPerPercentRange: {x: 2, y: 5}
-  prefab: {fileID: 636611672746538681, guid: b568ec9e866e38940829c96c75ece44b, type: 3}
+  prefab: {fileID: 7374189034580658096, guid: b568ec9e866e38940829c96c75ece44b, type: 3}

@@ -1,34 +1,47 @@
 ﻿using System;
 using Game.EnemyBlock.Data;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.EnemyBlock.View
 {
-	public class EnemyView : MonoBehaviour
+	public abstract class EnemyView : MonoBehaviour
 	{
-		private EnemyData _data;
+		[SerializeField] protected Animator _animator;
 		public EnemyData Data => _data;
 
-		private Action<EnemyView> _onDieCallback;
-		private float _bonusEnergy = 0;
-		private UnitSpawnPointView _currenSpawnPoint;
+		[SerializeField] private Vector3 _spawnOffset;
 
-		public void Initialize(EnemyData enemyData, Action<EnemyView> onDieCallback)
+		protected EnemyData _data;
+		protected Action<EnemyView> _onDieCallback;
+		protected Transform _robotTransform;
+
+		public float GetEnergy =>
+			Random.Range(_data.EnergyPerPercentRange.x, _data.EnergyPerPercentRange.y) + _bonusEnergy;
+
+		private float _bonusEnergy = 0;
+		private Vector3 _spawnPosition;
+
+		public virtual void Initialize(EnemyData enemyData, Action<EnemyView> onDieCallback)
 		{
 			_data = enemyData;
 			_onDieCallback = onDieCallback;
 		}
 
-		public void SetBonusEnergy(float bonus)
+		public virtual void SetBonusEnergy(float bonus)
 			=> _bonusEnergy = bonus;
 
-		public void SetSpawnPoint(UnitSpawnPointView spawnPointView)
+		public virtual void SetSpawnPosition(Transform robotTransform, Vector3 spawnPosition)
 		{
-			_currenSpawnPoint = spawnPointView;
-			transform.position = spawnPointView.transform.position;
+			_robotTransform = robotTransform;
+			_spawnPosition = spawnPosition;
+			transform.position = new Vector3(spawnPosition.x, _spawnOffset.y, _spawnOffset.z);
+			InitLogic();
 		}
 
-		private void Die()
+		protected abstract void InitLogic();
+
+		protected virtual void Die()
 		{
 			_onDieCallback?.Invoke(this);
 		}

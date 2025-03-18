@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4887003689716733299}
   - component: {fileID: 4922861428335434377}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3701053108817787610}
   - component: {fileID: 3899554683366562982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5347413461204921451}
   - component: {fileID: 7855667088678212371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8211220085344427229}
   - component: {fileID: 7396258141202097338}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,10 +345,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8339814346060161191}
-  - component: {fileID: 815582894967743676}
   - component: {fileID: 8443454476120286313}
   - component: {fileID: 5890961104939954537}
-  m_Layer: 0
+  - component: {fileID: 8097891715508509881}
+  m_Layer: 6
   m_Name: Helicopter_Blockout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,18 +375,6 @@ Transform:
   - {fileID: 8211220085344427229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &815582894967743676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7217783373479757696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c286f6d8b08458ca1f05898098c81b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &8443454476120286313
 Rigidbody2D:
   serializedVersion: 4
@@ -459,6 +447,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &8097891715508509881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7217783373479757696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991cb683802740c492e09949b1ce76e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  _spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8256419239979399680
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2386468833584366393}
   - component: {fileID: 4762997266517577406}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
