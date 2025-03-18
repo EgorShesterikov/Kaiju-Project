@@ -27,6 +27,7 @@ namespace Game.EnemyBlock.Controllers
 				var unit = _enemyViews[i];
 				if (needEnemyType != unit.Data.EnemyType) continue;
 				enemyView = unit;
+				enemyView.gameObject.SetActive(true);
 				_enemyViews.Remove(unit);
 				return true;
 			}
@@ -37,6 +38,7 @@ namespace Game.EnemyBlock.Controllers
 
 		public void Return(EnemyView obj)
 		{
+			obj.gameObject.SetActive(false);
 			_enemyViews.Add(obj);
 		}
 	}

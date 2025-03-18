@@ -106,14 +106,14 @@ namespace Game.EnemyBlock.Controllers
 
 		private Vector3 GetOutOfViewPosition()
 		{
-			Vector3 centerScreen = Camera.main.transform.position + Camera.main.transform.forward * 10;
+			var centerScreen = Camera.main.transform.position + Camera.main.transform.forward * 10;
 
-			float height = 2f * 10 * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
-			float width = height * Camera.main.aspect;
-
-			float randomX = Random.Range(-width / 2f, width / 2f);
-
-			float outOfViewX = (randomX > 0) ? (centerScreen.x + width / 2f + 1f) : (centerScreen.x - width / 2f - 1f);
+			var height = 2f * 10 * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
+			var width = height * Camera.main.aspect;
+			var randomX = Random.Range(-width / 2f, width / 2f);
+			var outOfViewX = (randomX > 0)
+				? (centerScreen.x + width / 2f + Random.Range(1f, 5f))
+				: (centerScreen.x - width / 2f - Random.Range(1f, 5f));
 
 			return new Vector3(outOfViewX, centerScreen.y, centerScreen.z);
 		}
