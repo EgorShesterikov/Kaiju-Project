@@ -1,3 +1,4 @@
+using Game.EnemyBlock.View;
 using UnityEngine;
 
 namespace Game.EnemyBlock.Data
@@ -29,8 +30,8 @@ namespace Game.EnemyBlock.Data
 		public Vector2 EnergyPerPercentRange => energyPerPercentRange;
 
 		[Header("View")]
-		[SerializeField] private GameObject prefab;
+		[SerializeField] private EnemyView prefab;
 
-		public GameObject Prefab => prefab;
+		public EnemyView Prefab => prefab;
 	}
 }

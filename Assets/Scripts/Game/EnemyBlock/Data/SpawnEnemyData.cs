@@ -8,6 +8,9 @@ namespace Game.EnemyBlock.Data
 	{
 		[SerializeField] private float baseSpawnCooldown;
 		public float BaseSpawnCooldown => baseSpawnCooldown;
+
+		[SerializeField] private List<EnemyData> _allEnemyData;
+		public List<EnemyData> AllEnemyData => _allEnemyData;
 		
 		[SerializeField] private List<EnemyGroupsData> createdEnemyGroups;
 		public List<EnemyGroupsData> CreatedEnemyGroups => createdEnemyGroups;

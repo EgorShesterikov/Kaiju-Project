@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Civilian
   m_EditorClassIdentifier: 
   enemyType: 0
-  health: 0
   damage: 0
-  attackCooldown: 0
-  weaponData: {fileID: 0}
+  attackCooldownRange: {x: 0, y: 0}
+  projectilePerAttackRange: {x: 0, y: 0}
+  projectileSpeed: 0
   moveSpeedRange: {x: 0.85, y: 1}
   energyPerPercentRange: {x: 1.5, y: 1.5}
+  prefab: {fileID: 1412877032647511503, guid: 253ce7c7f31d5354caf4513bd14afc0e, type: 3}

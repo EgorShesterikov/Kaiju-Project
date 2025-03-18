@@ -19,23 +19,26 @@ namespace Game.EnemyBlock.Controllers
 			_enemyViews.Add(obj);
 		}
 
-		public EnemyView Get(EnemyType needEnemyType)
+		public bool TryGet(EnemyType needEnemyType, out EnemyView enemyView)
 		{
+			enemyView = null;
 			for (int i = 0; i < _enemyViews.Count; i++)
 			{
 				var unit = _enemyViews[i];
 				if (needEnemyType != unit.Data.EnemyType) continue;
-
+				enemyView = unit;
+				enemyView.gameObject.SetActive(true);
 				_enemyViews.Remove(unit);
-				return unit;
+				return true;
 			}
 
 			Debug.Log($"Enemy not found");
-			return null;
+			return false;
 		}
 
 		public void Return(EnemyView obj)
 		{
+			obj.gameObject.SetActive(false);
 			_enemyViews.Add(obj);
 		}
 	}

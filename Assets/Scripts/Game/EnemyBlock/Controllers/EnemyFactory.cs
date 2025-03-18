@@ -1,17 +1,25 @@
-﻿using Game.EnemyBlock.Data;
+﻿using System;
+using Game.EnemyBlock.Data;
 using Game.EnemyBlock.View;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Game.EnemyBlock.Controllers
 {
-	public class EnemyFactory
+	public class EnemyFactory : IUnitFactory<EnemyView, EnemyData>
 	{
-		public EnemyView CreateEnemy(EnemyData enemyData)
+		public EnemyView CreateEnemy(EnemyData enemyData, Action<EnemyView> onDieCallback)
 		{
-			GameObject enemyObject = Object.Instantiate(enemyData.Prefab);
-			EnemyView _enemyView = enemyObject.GetComponent<EnemyView>(); // Добавление Component UnitView
-			_enemyView.Initialize(enemyData);
-			return _enemyView;
+			try
+			{
+				EnemyView _enemyView = Object.Instantiate(enemyData.Prefab);
+				_enemyView.Initialize(enemyData, onDieCallback);
+				return _enemyView;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
 		}
 	}
 }

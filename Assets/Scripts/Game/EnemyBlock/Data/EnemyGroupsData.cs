@@ -6,8 +6,11 @@ namespace Game.EnemyBlock.Data
 	[System.Serializable]
 	public class EnemyGroupsData
 	{
+		[SerializeField] private Vector2 playerHPRange;
+		public Vector2 PlayerHPRange => playerHPRange;
+		
 		[SerializeField] private Vector2 additionSpawnCooldownRange;
-		public Vector2 AdditionSpawnCooldownRANGE => additionSpawnCooldownRange;
+		public Vector2 AdditionSpawnCooldownRange => additionSpawnCooldownRange;
 
 		[SerializeField] private Vector2 additionEnergyPerPercentRange;
 		public Vector2 AdditionEnergyPerPercentRange => additionEnergyPerPercentRange;
