@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6533190f7bb6e49b507578e0fd6d8c, type: 3}
+  m_Name: GunStationConfig
+  m_EditorClassIdentifier: 
+  speedGunRotation: 2
+  clampAngleGunRotation: 0.5
+  bullet: {fileID: 1825688038748225375, guid: b20ba746ed59c2f48b4db4b702c07996, type: 3}
+  bulletLifeTime: 5
+  bulletSpeed: 0.1
+  bulletSpread: 0.1
+  bulletDamage: 100
