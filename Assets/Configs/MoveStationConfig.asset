@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: MoveStationConfig
   m_EditorClassIdentifier: 
   speedEngineRotation: 1
+  maxCombatShipRotationAngle: 3
+  swingAmplitude: 1
+  swingSpeed: 2
   clampAngleEngineRotation: 0.5
   moveSpeed: 0.1
   timeToFullMove: 5

@@ -20,6 +20,14 @@ namespace Kaiju
         private float _currentSpeed;
 
         private Tween _changeMoveTween;
+        private Tween _changeRotationTween;
+
+        private float _startCombatRobotYPosition;
+
+        private void Awake()
+        {
+            _startCombatRobotYPosition = combatRobot.transform.position.y;
+        }
 
         public override void PressInstantHorizontal(float value)
         {
@@ -56,6 +64,8 @@ namespace Kaiju
                     _currentSpeed = value;
                 })
                 .SetEase(Ease.Linear).SetAutoKill(this);
+
+            _changeRotationTween?.Kill();
         }
 
         private void IsDeActiveEngine()
@@ -67,6 +77,9 @@ namespace Kaiju
                         _currentSpeed = value;
                     }).OnComplete(() => _isActiveEngine = false)
                 .SetEase(Ease.Linear).SetAutoKill(this);
+
+            _changeRotationTween?.Kill();
+            _changeRotationTween = combatRobot.transform.DORotate(Vector3.zero, config.TimeToStopMove);
         }
 
         private void FixedUpdate()
@@ -78,7 +91,13 @@ namespace Kaiju
         {
             if (!_isActiveEngine) return;
 
-            combatRobot.transform.position += Vector3.right * -_engineRotation * _currentSpeed;
+            var targetPosition = Vector3.right * -_engineRotation * _currentSpeed;
+            var swing = (Mathf.Sin(Time.time * config.SwingSpeed) * config.SwingAmplitude) * _currentSpeed;
+            targetPosition.y = _startCombatRobotYPosition + swing - combatRobot.transform.position.y;
+            combatRobot.transform.position += targetPosition;
+
+            var targetRotation = Quaternion.Euler(0, 0, _engineRotation * config.MaxCombatRobotRotationAngle);
+            combatRobot.transform.rotation = Quaternion.RotateTowards(combatRobot.transform.rotation, targetRotation, _currentSpeed);
         }
 
         private void RotateEngine(float value)
