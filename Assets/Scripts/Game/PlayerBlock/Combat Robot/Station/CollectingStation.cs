@@ -17,13 +17,27 @@ namespace Kaiju
 
         private List<ICollected> _collectedList = new();
 
+        private bool _isActive;
+
         public override void PressSpace(bool active)
         {
-            if (active)
+            _isActive = active;
+
+            if (_isActive)
             {
                 IsActiveRay();
             }
             else
+            {
+                IsDeActiveRay();
+            }
+        }
+
+        protected override void Exit()
+        {
+            base.Exit();
+
+            if (_isActive)
             {
                 IsDeActiveRay();
             }
