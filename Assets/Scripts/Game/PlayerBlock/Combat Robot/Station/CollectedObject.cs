@@ -7,7 +7,7 @@ namespace Kaiju
     public class CollectedObject : MonoBehaviour, ICollected
     {
         [SerializeField] private float collectedDuration = 2;
-        [SerializeField] private Rigidbody2D rigidbody2D;
+        [SerializeField] private Rigidbody2D rigidbody;
 
         private float _liquidCount;
 
@@ -26,7 +26,7 @@ namespace Kaiju
         {
             _isTacked = true;
 
-            rigidbody2D.isKinematic = true;
+            rigidbody.isKinematic = true;
 
             _collectedTween = transform.DOMove(target, collectedDuration)
                 .OnComplete(() =>
@@ -41,7 +41,7 @@ namespace Kaiju
         {
             _isTacked = false;
 
-            rigidbody2D.isKinematic = false;
+            rigidbody.isKinematic = false;
 
             _collectedTween?.Kill();
         }

@@ -8,7 +8,7 @@ namespace Kaiju
         private const string IS_MOVE_PARAM = "IsMove";
 
         [SerializeField] private PlayerConfig config;
-        [SerializeField] private Rigidbody2D rigidbody2D;
+        [SerializeField] private Rigidbody2D rigidbody;
         [SerializeField] private Animator animator;
 
         [Space]
@@ -49,11 +49,11 @@ namespace Kaiju
                     }
                 }
 
-                var newVelocity = rigidbody2D.velocity;
+                var newVelocity = rigidbody.velocity;
 
                 newVelocity.y = value * config.StairsSpeed;
 
-                rigidbody2D.velocity = newVelocity;
+                rigidbody.velocity = newVelocity;
             }
         }
 
@@ -100,16 +100,16 @@ namespace Kaiju
         private void StopMove()
         {
             _moveDirection = Vector2.zero;
-            var timeToStopMove = Mathf.InverseLerp(0, config.MaxVelocity, Mathf.Abs(rigidbody2D.velocity.x)) * config.MaxTimeToStopMove;
+            var timeToStopMove = Mathf.InverseLerp(0, config.MaxVelocity, Mathf.Abs(rigidbody.velocity.x)) * config.MaxTimeToStopMove;
 
             _stopMoveTween?.Kill();
-            _stopMoveTween = DOVirtual.Float(rigidbody2D.velocity.x, 0, timeToStopMove,
+            _stopMoveTween = DOVirtual.Float(rigidbody.velocity.x, 0, timeToStopMove,
                 value =>
                 {
-                    var newVelocity = rigidbody2D.velocity;
+                    var newVelocity = rigidbody.velocity;
                     newVelocity.x = value;
 
-                    rigidbody2D.velocity = newVelocity;
+                    rigidbody.velocity = newVelocity;
                 }).OnComplete(() => animator.SetBool(IS_MOVE_PARAM, false))
                 .SetEase(Ease.Linear).SetAutoKill(this);
         }
@@ -118,13 +118,13 @@ namespace Kaiju
         {
             if (_moveDirection == Vector2.zero) return;
 
-            var velocity = rigidbody2D.velocity;
+            var velocity = rigidbody.velocity;
 
             var newVelocity = velocity + _moveDirection * config.MoveSpeed;
 
             newVelocity.x = Mathf.Clamp(newVelocity.x, -config.MaxVelocity, config.MaxVelocity);
 
-            rigidbody2D.velocity = newVelocity;
+            rigidbody.velocity = newVelocity;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -132,8 +132,8 @@ namespace Kaiju
             if (other.CompareTag("Stairs"))
             {
                 _isStairs = true;
-                _cacheGravity = rigidbody2D.gravityScale;
-                rigidbody2D.gravityScale = 0;
+                _cacheGravity = rigidbody.gravityScale;
+                rigidbody.gravityScale = 0;
             }
 
             if (other.TryGetComponent(out StationBase station))
@@ -149,7 +149,7 @@ namespace Kaiju
             if (other.CompareTag("Stairs"))
             {
                 _isStairs = false;
-                rigidbody2D.gravityScale = _cacheGravity;
+                rigidbody.gravityScale = _cacheGravity;
             }
 
             if (other.TryGetComponent(out StationBase station))

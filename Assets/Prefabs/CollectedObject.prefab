@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectedDuration: 2
-  rigidbody2D: {fileID: 4742243489828447034}
+  rigidbody: {fileID: 4742243489828447034}
 --- !u!212 &8708745044240706460
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using EnemyBlock.Interfaces;
 using UnityEngine;
 
@@ -11,12 +12,16 @@ namespace Kaiju
 
         [SerializeField] private SpriteRenderer liquidProgress;
 
+        [SerializeField] private CombatRobotConfig config;
+
+        private Sequence _damageSequence;
+
         public void ChangeLiquid(float value)
         {
-            value = Mathf.Clamp01(value);
-
             var size = liquidProgress.size;
             size.x += value;
+
+            size.x = Mathf.Clamp01(size.x);
 
             liquidProgress.size = size;
 
@@ -25,7 +30,33 @@ namespace Kaiju
 
         public void SetDamage(float damage = 0)
         {
-            ChangeLiquid(damage);
+            ChangeLiquid(-damage);
+            PlayDamageAnim(damage);
+        }
+
+        private void PlayDamageAnim(float damage)
+        {
+            if (_damageSequence != null && _damageSequence.IsActive()) return;
+
+            _damageSequence = DOTween.Sequence();
+
+            var strange = Vector3.one * (damage * config.DamageAnimMultiplier);
+
+            _damageSequence.Append(transform.DOShakePosition(config.DamageAnimDuration, strange))
+                .Join(transform.DOShakeRotation(config.DamageAnimDuration, strange)).SetAutoKill(this);
+        }
+
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                SetDamage(0.035f);
+            }
+
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                SetDamage(0.1f);
+            }
         }
 
         private void CheckResultAction()
