@@ -7,7 +7,7 @@ namespace Kaiju
     {
         bool IsTacked { get; }
 
-        void Collected(Vector3 target, Action callBack);
+        void Collected(Vector3 target, Action<float> callBack);
         void Drop();
     }
 }

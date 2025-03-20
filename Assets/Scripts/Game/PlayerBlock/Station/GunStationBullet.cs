@@ -10,23 +10,20 @@ namespace Kaiju
         private float _damage;
         private Vector3 _direction;
 
+        private Tween _autoDestroyTween;
+
         public void Initialize(float speed, float damage, float lifeTime, Vector3 direction)
         {
             _speed = speed;
             _damage = damage;
             _direction = direction;
 
-            DOVirtual.DelayedCall(lifeTime, DestroyBullet).SetAutoKill(this);
+            _autoDestroyTween = DOVirtual.DelayedCall(lifeTime, DestroyBullet).SetAutoKill(this);
         }
 
         private void FixedUpdate()
         {
             transform.position += _direction * _speed;
-        }
-
-        private void DestroyBullet()
-        {
-            Destroy(gameObject);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -38,8 +35,14 @@ namespace Kaiju
                     damageable.SetDamage(_damage);
                 }
 
+                _autoDestroyTween.Kill();
                 DestroyBullet();
             }
+        }
+
+        private void DestroyBullet()
+        {
+            Destroy(gameObject);
         }
     }
 }

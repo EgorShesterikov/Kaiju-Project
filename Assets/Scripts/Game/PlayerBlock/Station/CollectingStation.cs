@@ -6,6 +6,7 @@ namespace Kaiju
 {
     public class CollectingStation : StationBase
     {
+        [SerializeField] private CombatRobot combatRobot;
         [SerializeField] private SpriteRenderer ray;
         [SerializeField] private Transform collectTarget;
 
@@ -42,9 +43,9 @@ namespace Kaiju
             }
         }
 
-        private void Collect()
+        private void Collect(float liquidCount)
         {
-
+            combatRobot.ChangeLiquid(liquidCount);
         }
 
         private void IsDeActiveRay()

@@ -9,13 +9,20 @@ namespace Kaiju
         [SerializeField] private float collectedDuration = 2;
         [SerializeField] private Rigidbody2D rigidbody2D;
 
+        private float _liquidCount;
+
         private bool _isTacked;
 
         private Tween _collectedTween;
 
         public bool IsTacked => _isTacked;
 
-        public void Collected(Vector3 target, Action callBack)
+        public void SetLiquidCount(float liquidCount)
+        {
+            _liquidCount = liquidCount;
+        }
+
+        public void Collected(Vector3 target, Action<float> callBack)
         {
             _isTacked = true;
 
@@ -24,7 +31,7 @@ namespace Kaiju
             _collectedTween = transform.DOMove(target, collectedDuration)
                 .OnComplete(() =>
                 {
-                    callBack.Invoke();
+                    callBack.Invoke(_liquidCount);
                     Destroy(gameObject);
                 })
                 .SetAutoKill(this);
