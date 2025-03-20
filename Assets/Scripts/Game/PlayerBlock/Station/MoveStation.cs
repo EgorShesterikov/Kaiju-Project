@@ -84,7 +84,16 @@ namespace Kaiju
 
         private void FixedUpdate()
         {
+            CalculateSwing();
             CalculateForce();
+        }
+
+        private void CalculateSwing()
+        {
+            var targetPosition = Vector3.zero;
+            var swing = Mathf.Sin(Time.time * config.SwingSpeed) * config.SwingAmplitude;
+            targetPosition.y = _startCombatRobotYPosition + swing - combatRobot.transform.position.y;
+            combatRobot.transform.position += targetPosition;
         }
 
         private void CalculateForce()
@@ -92,8 +101,6 @@ namespace Kaiju
             if (!_isActiveEngine) return;
 
             var targetPosition = Vector3.right * -_engineRotation * _currentSpeed;
-            var swing = (Mathf.Sin(Time.time * config.SwingSpeed) * config.SwingAmplitude) * _currentSpeed;
-            targetPosition.y = _startCombatRobotYPosition + swing - combatRobot.transform.position.y;
             combatRobot.transform.position += targetPosition;
 
             var targetRotation = Quaternion.Euler(0, 0, _engineRotation * config.MaxCombatRobotRotationAngle);

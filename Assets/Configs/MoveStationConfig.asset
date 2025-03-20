@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedEngineRotation: 1
   maxCombatShipRotationAngle: 3
-  swingAmplitude: 1
-  swingSpeed: 2
+  swingAmplitude: 0.1
+  swingSpeed: 1
   clampAngleEngineRotation: 0.5
   moveSpeed: 0.1
   timeToFullMove: 5

@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a0b5c3e5d4e35458d385c35f5945ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liquidProgress: {fileID: 0}
 --- !u!1 &1189462097375384162
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f89ef7760527d4c9636ec9d269f0e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatRobot: {fileID: 0}
   ray: {fileID: 1109272460977441920}
   collectTarget: {fileID: 2144800632456308423}
   config: {fileID: 11400000, guid: 172981512cd0ad6488237bc2bd733248, type: 2}
