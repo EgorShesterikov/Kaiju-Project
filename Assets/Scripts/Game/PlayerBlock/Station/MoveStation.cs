@@ -103,7 +103,7 @@ namespace Kaiju
             var targetPosition = Vector3.right * -_engineRotation * _currentSpeed;
             combatRobot.transform.position += targetPosition;
 
-            var targetRotation = Quaternion.Euler(0, 0, _engineRotation * config.MaxCombatRobotRotationAngle);
+            var targetRotation = Quaternion.Euler(0, 0, -_engineRotation * config.MaxCombatRobotRotationAngle);
             combatRobot.transform.rotation = Quaternion.RotateTowards(combatRobot.transform.rotation, targetRotation, _currentSpeed);
         }
 
