@@ -21,6 +21,7 @@ namespace Kaiju
 
         private Tween _changeMoveTween;
         private Tween _changeRotationTween;
+        private Sequence _defaultRotationEngineSequence;
 
         private float _startCombatRobotYPosition;
 
@@ -46,10 +47,18 @@ namespace Kaiju
             }
         }
 
+        public override void Enter(IController player)
+        {
+            base.Enter(player);
+
+            _defaultRotationEngineSequence?.Kill();
+        }
+
         protected override void Exit()
         {
             base.Exit();
 
+            SetDefaultRotationEngine();
             IsDeActiveEngine();
         }
 
@@ -80,6 +89,17 @@ namespace Kaiju
 
             _changeRotationTween?.Kill();
             _changeRotationTween = combatRobot.transform.DORotate(Vector3.zero, config.TimeToStopMove);
+        }
+
+        private void SetDefaultRotationEngine()
+        {
+            _defaultRotationEngineSequence?.Kill();
+            _defaultRotationEngineSequence = DOTween.Sequence();
+
+            _defaultRotationEngineSequence.OnUpdate(() => _engineRotation = leftEngine.localRotation.z)
+                .Append(leftEngine.transform.DOLocalRotateQuaternion(Quaternion.identity, config.TimeToStopMove))
+                .Join(rightEngine.transform.DOLocalRotateQuaternion(Quaternion.identity, config.TimeToStopMove))
+                .SetAutoKill(this);
         }
 
         private void FixedUpdate()
