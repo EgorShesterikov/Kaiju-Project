@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8708745044240706460}
   - component: {fileID: 433191799022556376}
   - component: {fileID: 4742243489828447034}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CollectedObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e234b75934ca044c8dd5062d840799c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectedDuration: 2
   rigidbody2D: {fileID: 4742243489828447034}
 --- !u!212 &8708745044240706460
 SpriteRenderer:
