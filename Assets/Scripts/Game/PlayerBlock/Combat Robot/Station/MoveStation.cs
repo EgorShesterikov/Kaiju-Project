@@ -5,6 +5,8 @@ namespace Kaiju
 {
     public class MoveStation : StationBase
     {
+        private const float NEED_TIME_NO_INPUT_TO_DE_ACTIVE_ENGIE = 0.05f;
+
         private const float DE_ACTIVE_Y_FVX_ENGINE = 0.535f;
         private const float ACTIVE_Y_FVX_ENGINE = -0.8f;
 
@@ -32,6 +34,8 @@ namespace Kaiju
 
         private float _startCombatRobotYPosition;
 
+        private float _currentTimeNoInputToDeActiveEngine;
+
         private void Awake()
         {
             _startCombatRobotYPosition = combatRobot.transform.position.y;
@@ -43,15 +47,24 @@ namespace Kaiju
 
             if (!Mathf.Approximately(value, 0))
             {
+                _currentTimeNoInputToDeActiveEngine = 0;
+
                 if (!_isActiveEngine || _isDeActiveProcess)
                 {
                     IsActiveEngine();
                 }
             }
-            else if (!_isDeActiveProcess)
+            else
             {
-                SetDefaultRotationEngine();
-                IsDeActiveEngine();
+                if (_currentTimeNoInputToDeActiveEngine < NEED_TIME_NO_INPUT_TO_DE_ACTIVE_ENGIE)
+                {
+                    _currentTimeNoInputToDeActiveEngine += Time.deltaTime;
+                }
+                else if (!_isDeActiveProcess)
+                {
+                    SetDefaultRotationEngine();
+                    IsDeActiveEngine();
+                }
             }
         }
 
