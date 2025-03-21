@@ -5,16 +5,22 @@ namespace Kaiju
 {
     public class MoveStation : StationBase
     {
+        private const float DE_ACTIVE_Y_FVX_ENGINE = 0.535f;
+        private const float ACTIVE_Y_FVX_ENGINE = -0.8f;
+
         [SerializeField] private CombatRobot combatRobot;
 
         [Space]
         [SerializeField] private Transform leftEngine;
         [SerializeField] private Transform rightEngine;
+        [SerializeField] private Transform leftFvxEngine;
+        [SerializeField] private Transform rightFvxEngine;
 
         [Space] 
         [SerializeField] private MoveStationConfig config;
 
         private bool _isActiveEngine;
+        private bool _isDeActiveProcess;
         private float _engineRotation;
 
         private float _currentSpeed;
@@ -22,6 +28,7 @@ namespace Kaiju
         private Tween _changeMoveTween;
         private Tween _changeRotationTween;
         private Sequence _defaultRotationEngineSequence;
+        private Sequence _changeFvxEngineSequence;
 
         private float _startCombatRobotYPosition;
 
@@ -33,16 +40,17 @@ namespace Kaiju
         public override void PressInstantHorizontal(float value)
         {
             RotateEngine(value);
-        }
 
-        public override void PressSpace(bool active)
-        {
-            if (active)
+            if (!Mathf.Approximately(value, 0))
             {
-                IsActiveEngine();
+                if (!_isActiveEngine || _isDeActiveProcess)
+                {
+                    IsActiveEngine();
+                }
             }
-            else
+            else if (!_isDeActiveProcess)
             {
+                SetDefaultRotationEngine();
                 IsDeActiveEngine();
             }
         }
@@ -66,6 +74,8 @@ namespace Kaiju
         {
             _isActiveEngine = true;
 
+            _defaultRotationEngineSequence?.Kill();
+
             _changeMoveTween?.Kill();
             _changeMoveTween = DOVirtual.Float(_currentSpeed, config.MoveSpeed, config.TimeToFullMove,
                 value =>
@@ -74,17 +84,43 @@ namespace Kaiju
                 })
                 .SetEase(Ease.Linear).SetAutoKill(this);
 
+            _changeFvxEngineSequence?.Kill();
+            _changeFvxEngineSequence = DOTween.Sequence();
+
+            var currentProgress = leftFvxEngine.transform.localPosition.y - ACTIVE_Y_FVX_ENGINE;
+            var offsetProgressTime = Mathf.Lerp(DE_ACTIVE_Y_FVX_ENGINE, ACTIVE_Y_FVX_ENGINE, currentProgress);
+
+            _changeFvxEngineSequence.Append(leftFvxEngine.DOLocalMoveY(ACTIVE_Y_FVX_ENGINE, config.TimeToFullMove - offsetProgressTime))
+                .Join(rightFvxEngine.DOLocalMoveY(ACTIVE_Y_FVX_ENGINE, config.TimeToFullMove - offsetProgressTime))
+                .SetEase(Ease.Linear).SetAutoKill(this);
+
             _changeRotationTween?.Kill();
         }
 
         private void IsDeActiveEngine()
         {
+            _isDeActiveProcess = true;
+
             _changeMoveTween?.Kill();
             _changeMoveTween = DOVirtual.Float(_currentSpeed, 0, config.TimeToStopMove,
                     value =>
                     {
                         _currentSpeed = value;
-                    }).OnComplete(() => _isActiveEngine = false)
+                    }).OnKill(() =>
+                {
+                    _isDeActiveProcess = false;
+                    _isActiveEngine = false;
+                })
+                .SetEase(Ease.Linear).SetAutoKill(this);
+
+            _changeFvxEngineSequence?.Kill();
+            _changeFvxEngineSequence = DOTween.Sequence();
+
+            var currentProgress = leftFvxEngine.transform.localPosition.y - DE_ACTIVE_Y_FVX_ENGINE;
+            var offsetProgressTime = Mathf.Lerp(DE_ACTIVE_Y_FVX_ENGINE, ACTIVE_Y_FVX_ENGINE, currentProgress);
+
+            _changeFvxEngineSequence.Append(leftFvxEngine.DOLocalMoveY(DE_ACTIVE_Y_FVX_ENGINE, config.TimeToStopMove - offsetProgressTime))
+                .Join(rightFvxEngine.DOLocalMoveY(DE_ACTIVE_Y_FVX_ENGINE, config.TimeToStopMove - offsetProgressTime))
                 .SetEase(Ease.Linear).SetAutoKill(this);
 
             _changeRotationTween?.Kill();

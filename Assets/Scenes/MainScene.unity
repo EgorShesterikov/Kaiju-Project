@@ -2414,22 +2414,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat Robot
       objectReference: {fileID: 0}
-    - target: {fileID: 4722282984769955298, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: -2.2854414
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722282984769955298, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
-      value: -9.801653
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722282984769955298, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: 2.27989
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722282984769955298, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
-      value: -9.800959
-      objectReference: {fileID: 0}
     - target: {fileID: 7275539755167261926, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2469,18 +2453,6 @@ PrefabInstance:
     - target: {fileID: 7275539755167261926, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7742751325332276289, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7742751325332276289, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7742751325332276289, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
