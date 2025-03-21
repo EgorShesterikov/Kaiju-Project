@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858b772bf67f88548a3d0c40e7334bfb, type: 3}
   m_Name: CollectingStationConfig
   m_EditorClassIdentifier: 
+  hintControlData: {fileID: 11400000, guid: ee61f74055426bc4987a2bc111f0d84f, type: 2}
   changeActiveDuration: 0.5

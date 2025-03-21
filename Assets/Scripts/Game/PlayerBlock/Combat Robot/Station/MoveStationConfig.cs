@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Kaiju
 {
     [CreateAssetMenu(fileName = "MoveStationConfig", menuName = "Configs/MoveStationConfig")]
-    public class MoveStationConfig : ScriptableObject
+    public class MoveStationConfig : BaseStationConfig
     {
         [SerializeField] private float speedEngineRotation = 3;
         [SerializeField] private float maxCombatShipRotationAngle = 5f;

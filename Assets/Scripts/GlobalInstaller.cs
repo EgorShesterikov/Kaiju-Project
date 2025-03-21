@@ -11,6 +11,7 @@ namespace Kaiju
             Application.targetFrameRate = 60;
 
             Container.BindInterfacesAndSelfTo<InputController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<HintController>().AsSingle();
             Container.BindInterfacesAndSelfTo<EnemyFactory>().AsSingle();
         }
     }

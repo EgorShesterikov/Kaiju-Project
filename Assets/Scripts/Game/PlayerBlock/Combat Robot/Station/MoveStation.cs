@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Kaiju
 {
-    public class MoveStation : StationBase
+    public class MoveStation : StationBase, IController
     {
         private const float NEED_TIME_NO_INPUT_TO_DE_ACTIVE_ENGIE = 0.05f;
 
@@ -39,6 +39,11 @@ namespace Kaiju
         private void Awake()
         {
             _startCombatRobotYPosition = combatRobot.transform.position.y;
+        }
+
+        public void StartControl()
+        {
+            _hintController.SetTargetHintControl(config.HintControlData);
         }
 
         public override void PressInstantHorizontal(float value)

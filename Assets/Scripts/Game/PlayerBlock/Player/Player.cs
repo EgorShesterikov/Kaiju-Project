@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 namespace Kaiju
 {
@@ -11,9 +12,6 @@ namespace Kaiju
         [SerializeField] private Rigidbody2D rigidbody;
         [SerializeField] private Animator animator;
 
-        [Space]
-        [SerializeField] private PlayerHintComponent hintComponent;
-
         private Vector2 _moveDirection;
         private Tween _stopMoveTween;
 
@@ -21,6 +19,13 @@ namespace Kaiju
         private float _cacheGravity;
 
         private StationBase _enterStation;
+
+        [Inject] private readonly IHintController _hintController;
+
+        public void StartControl()
+        {
+            _hintController.SetTargetHintControl(config.HintControlData);
+        }
 
         public void PressInstantHorizontal(float value)
         {
@@ -63,7 +68,6 @@ namespace Kaiju
         {
             if (_enterStation != null)
             {
-                hintComponent.DisplayPressE_Hint(false);
                 _enterStation.Enter(this);
                 StopMove();
             }
@@ -138,8 +142,6 @@ namespace Kaiju
 
             if (other.TryGetComponent(out StationBase station))
             {
-                hintComponent.DisplayPressE_Hint(true);
-
                 _enterStation = station;
             }
         }
@@ -154,8 +156,6 @@ namespace Kaiju
 
             if (other.TryGetComponent(out StationBase station))
             {
-                hintComponent.DisplayPressE_Hint(false);
-
                 _enterStation = null;
             }
         }

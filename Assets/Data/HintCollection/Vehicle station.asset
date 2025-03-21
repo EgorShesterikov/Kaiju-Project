@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014ecd20741fc974faf2023a4a481491, type: 3}
+  m_Name: Vehicle station
+  m_EditorClassIdentifier: 
+  nameContext: Vehicle station
+  hintCollection:
+  - {fileID: 8421181846962028209, guid: 417c954b16161de4a95a3deac8108ae3, type: 3}
+  - {fileID: 3943102164533167983, guid: 0c40bf4fb5872324f9479380eee81dff, type: 3}

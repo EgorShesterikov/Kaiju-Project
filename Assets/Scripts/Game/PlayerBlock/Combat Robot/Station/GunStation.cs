@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Kaiju
 {
-    public class GunStation : StationBase
+    public class GunStation : StationBase, IController
     {
         private enum GunSideTypes
         {
@@ -16,6 +16,11 @@ namespace Kaiju
 
         [Space]
         [SerializeField] private GunStationConfig config;
+
+        public void StartControl()
+        {
+            _hintController.SetTargetHintControl(config.HintControlData);
+        }
 
         public override void PressSpace(bool active)
         {

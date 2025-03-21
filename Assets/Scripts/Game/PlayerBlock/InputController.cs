@@ -10,6 +10,7 @@ namespace Kaiju
         public void SetObjectControl(IController controller)
         {
             _currentController = controller;
+            _currentController.StartControl();
         }
 
         public void Tick()

@@ -696,8 +696,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -0.0016196556, y: -2.8400712}
       - {x: -1.462211, y: -2.8414147}
-      - {x: -2.2854414, y: -9.801653}
-      - {x: 2.27989, y: -9.800959}
+      - {x: -3.4222066, y: -9.801653}
+      - {x: 3.4818003, y: -9.808935}
       - {x: 1.4837028, y: -2.8381414}
   m_UseDelaunayMesh: 0
 --- !u!1 &1761593688683451647
@@ -3821,8 +3821,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8351701140735757472, guid: f7831e5e80d072046b525a202a755d47, type: 3}
+      propertyPath: hintComponent
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6098930855799103767, guid: f7831e5e80d072046b525a202a755d47, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7831e5e80d072046b525a202a755d47, type: 3}

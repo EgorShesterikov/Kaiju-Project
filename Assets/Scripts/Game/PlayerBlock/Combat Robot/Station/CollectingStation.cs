@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Kaiju
 {
-    public class CollectingStation : StationBase
+    public class CollectingStation : StationBase, IController
     {
         [SerializeField] private CombatRobot combatRobot;
         [SerializeField] private SpriteRenderer ray;
@@ -18,6 +18,11 @@ namespace Kaiju
         private List<ICollected> _collectedList = new();
 
         private bool _isActive;
+
+        public void StartControl()
+        {
+            _hintController.SetTargetHintControl(config.HintControlData);
+        }
 
         public override void PressSpace(bool active)
         {

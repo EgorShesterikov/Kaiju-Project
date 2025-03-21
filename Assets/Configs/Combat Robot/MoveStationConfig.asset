@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad3820dcf89e25468f17020c5292f22, type: 3}
   m_Name: MoveStationConfig
   m_EditorClassIdentifier: 
+  hintControlData: {fileID: 11400000, guid: 2420a02cda7086440acc4ad00ef2e272, type: 2}
   speedEngineRotation: 1
   maxCombatShipRotationAngle: 3
   swingAmplitude: 0.1

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6533190f7bb6e49b507578e0fd6d8c, type: 3}
   m_Name: GunStationConfig
   m_EditorClassIdentifier: 
+  hintControlData: {fileID: 11400000, guid: 12ae5c7d25bef8d4fa040f7fe9c47187, type: 2}
   speedGunRotation: 2
   clampAngleGunRotation: 0.5
   bullet: {fileID: 1825688038748225375, guid: b20ba746ed59c2f48b4db4b702c07996, type: 3}

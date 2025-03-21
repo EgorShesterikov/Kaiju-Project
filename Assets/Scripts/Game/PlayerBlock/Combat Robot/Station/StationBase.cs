@@ -3,8 +3,10 @@ using Zenject;
 
 namespace Kaiju
 {
-    public class StationBase : MonoBehaviour, IController
+    public abstract class StationBase : MonoBehaviour, IController
     {
+        [Inject] protected readonly IHintController _hintController;
+
         [Inject] private readonly IInputController _inputController;
 
         private IController _player;
@@ -21,11 +23,17 @@ namespace Kaiju
             _player = null;
         }
 
-        public virtual void PressInstantVertical(float value) { }
+        public virtual void PressInstantVertical(float value)
+        {
+        }
 
-        public virtual void PressInstantHorizontal(float value) { }
+        public virtual void PressInstantHorizontal(float value)
+        {
+        }
 
-        public virtual void PressSpace(bool active) { }
+        public virtual void PressSpace(bool active)
+        {
+        }
 
         public virtual void PressE()
         {

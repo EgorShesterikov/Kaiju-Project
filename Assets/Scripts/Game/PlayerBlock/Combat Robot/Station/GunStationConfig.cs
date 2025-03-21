@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Kaiju
 {
     [CreateAssetMenu(fileName = "GunStationConfig", menuName = "Configs/GunStationConfig")]
-    public class GunStationConfig : ScriptableObject
+    public class GunStationConfig : BaseStationConfig
     {
         [SerializeField] private float speedGunRotation = 2;
         [SerializeField, Range(0, 1)] private float clampAngleGunRotation = 0.5f;

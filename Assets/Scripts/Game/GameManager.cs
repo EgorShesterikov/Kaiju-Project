@@ -8,8 +8,9 @@ namespace Kaiju
         [SerializeField] private Player player;
 
         [Inject] private readonly IInputController _inputController;
+        [Inject] private readonly IHintController _hintController;
 
-        private void Awake()
+        private void Start()
         {
             _inputController.SetObjectControl(player);
         }

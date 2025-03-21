@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defe94e88d6f00e47910018502a0e45e, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
+  _hintControlData: {fileID: 11400000, guid: d960f43c53e0854489e1c776fd517c53, type: 2}
   moveSpeed: 0.7
   maxVelocity: 1.72
   maxTimeToStopMove: 0.1
