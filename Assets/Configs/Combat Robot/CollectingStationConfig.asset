@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad3820dcf89e25468f17020c5292f22, type: 3}
-  m_Name: MoveStationConfig
+  m_Script: {fileID: 11500000, guid: 858b772bf67f88548a3d0c40e7334bfb, type: 3}
+  m_Name: CollectingStationConfig
   m_EditorClassIdentifier: 
-  speedEngineRotation: 1
-  maxCombatShipRotationAngle: 3
-  swingAmplitude: 1
-  swingSpeed: 2
-  clampAngleEngineRotation: 0.5
-  moveSpeed: 0.1
-  timeToFullMove: 5
-  timeToStopMove: 1
+  changeActiveDuration: 0.5

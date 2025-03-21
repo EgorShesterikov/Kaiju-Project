@@ -21,6 +21,7 @@ namespace Kaiju
 
         private Tween _changeMoveTween;
         private Tween _changeRotationTween;
+        private Sequence _defaultRotationEngineSequence;
 
         private float _startCombatRobotYPosition;
 
@@ -46,10 +47,18 @@ namespace Kaiju
             }
         }
 
+        public override void Enter(IController player)
+        {
+            base.Enter(player);
+
+            _defaultRotationEngineSequence?.Kill();
+        }
+
         protected override void Exit()
         {
             base.Exit();
 
+            SetDefaultRotationEngine();
             IsDeActiveEngine();
         }
 
@@ -82,9 +91,29 @@ namespace Kaiju
             _changeRotationTween = combatRobot.transform.DORotate(Vector3.zero, config.TimeToStopMove);
         }
 
+        private void SetDefaultRotationEngine()
+        {
+            _defaultRotationEngineSequence?.Kill();
+            _defaultRotationEngineSequence = DOTween.Sequence();
+
+            _defaultRotationEngineSequence.OnUpdate(() => _engineRotation = leftEngine.localRotation.z)
+                .Append(leftEngine.transform.DOLocalRotateQuaternion(Quaternion.identity, config.TimeToStopMove))
+                .Join(rightEngine.transform.DOLocalRotateQuaternion(Quaternion.identity, config.TimeToStopMove))
+                .SetAutoKill(this);
+        }
+
         private void FixedUpdate()
         {
+            CalculateSwing();
             CalculateForce();
+        }
+
+        private void CalculateSwing()
+        {
+            var targetPosition = Vector3.zero;
+            var swing = Mathf.Sin(Time.time * config.SwingSpeed) * config.SwingAmplitude;
+            targetPosition.y = _startCombatRobotYPosition + swing - combatRobot.transform.position.y;
+            combatRobot.transform.position += targetPosition;
         }
 
         private void CalculateForce()
@@ -92,11 +121,9 @@ namespace Kaiju
             if (!_isActiveEngine) return;
 
             var targetPosition = Vector3.right * -_engineRotation * _currentSpeed;
-            var swing = (Mathf.Sin(Time.time * config.SwingSpeed) * config.SwingAmplitude) * _currentSpeed;
-            targetPosition.y = _startCombatRobotYPosition + swing - combatRobot.transform.position.y;
             combatRobot.transform.position += targetPosition;
 
-            var targetRotation = Quaternion.Euler(0, 0, _engineRotation * config.MaxCombatRobotRotationAngle);
+            var targetRotation = Quaternion.Euler(0, 0, -_engineRotation * config.MaxCombatRobotRotationAngle);
             combatRobot.transform.rotation = Quaternion.RotateTowards(combatRobot.transform.rotation, targetRotation, _currentSpeed);
         }
 
