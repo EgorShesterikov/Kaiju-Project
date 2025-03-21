@@ -16,6 +16,22 @@ namespace Kaiju
 
         private Sequence _damageSequence;
 
+        private bool _isActive;
+        private float _defaultYPosition;
+        private float _activeLifeTime;
+
+        public bool IsActive => _isActive;
+        public float ActiveLifeTime => _activeLifeTime;
+
+        public float DefaultYPosition => _defaultYPosition;
+
+        public void Activated()
+        {
+            _defaultYPosition = transform.position.y;
+
+            _isActive = true;
+        }
+
         public void ChangeLiquid(float value)
         {
             var size = liquidProgress.size;
@@ -48,14 +64,9 @@ namespace Kaiju
 
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.B))
+            if (IsActive)
             {
-                SetDamage(0.035f);
-            }
-
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                SetDamage(0.1f);
+                _activeLifeTime += Time.deltaTime;
             }
         }
 

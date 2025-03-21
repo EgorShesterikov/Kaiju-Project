@@ -15,6 +15,8 @@ namespace Kaiju
 
         public void Tick()
         {
+            if (_currentController == null ) return;
+
             _currentController.PressInstantHorizontal(Input.GetAxis("InstantHorizontal"));
             _currentController.PressInstantVertical(Input.GetAxis("InstantVertical"));
 

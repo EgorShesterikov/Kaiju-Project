@@ -32,14 +32,7 @@ namespace Kaiju
         private Sequence _defaultRotationEngineSequence;
         private Sequence _changeFvxEngineSequence;
 
-        private float _startCombatRobotYPosition;
-
         private float _currentTimeNoInputToDeActiveEngine;
-
-        private void Awake()
-        {
-            _startCombatRobotYPosition = combatRobot.transform.position.y;
-        }
 
         public void StartControl()
         {
@@ -158,6 +151,8 @@ namespace Kaiju
 
         private void FixedUpdate()
         {
+            if (!combatRobot.IsActive) return;
+
             CalculateSwing();
             CalculateForce();
         }
@@ -165,8 +160,8 @@ namespace Kaiju
         private void CalculateSwing()
         {
             var targetPosition = Vector3.zero;
-            var swing = Mathf.Sin(Time.time * config.SwingSpeed) * config.SwingAmplitude;
-            targetPosition.y = _startCombatRobotYPosition + swing - combatRobot.transform.position.y;
+            var swing = Mathf.Sin(combatRobot.ActiveLifeTime * config.SwingSpeed) * config.SwingAmplitude;
+            targetPosition.y = combatRobot.DefaultYPosition + swing - combatRobot.transform.position.y;
             combatRobot.transform.position += targetPosition;
         }
 
