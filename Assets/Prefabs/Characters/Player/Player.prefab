@@ -1080,7 +1080,6 @@ MonoBehaviour:
   config: {fileID: 11400000, guid: 34d19fcab994c1b44a08d2e1db36c8cd, type: 2}
   rigidbody: {fileID: 664547470840778624}
   animator: {fileID: 8728168753271847567}
-  hintComponent: {fileID: 0}
 --- !u!114 &6742725251952709035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,15 +1143,15 @@ Rigidbody2D:
   m_Mass: 1.9
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1.7
-  m_Material: {fileID: 6200000, guid: 639d7eb88d534c74e8676320c722ffea, type: 2}
+  m_GravityScale: 8
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4

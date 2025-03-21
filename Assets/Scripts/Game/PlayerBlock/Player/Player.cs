@@ -12,12 +12,12 @@ namespace Kaiju
         [SerializeField] private Rigidbody2D rigidbody;
         [SerializeField] private Animator animator;
 
-        private Vector2 _moveDirection;
+        private Vector3 _velocity;
+        private Vector3 _moveDirection;
         private Tween _stopMoveTween;
-
-        private bool _isStairs;
         private float _cacheGravity;
 
+        private Stairs _enterStairs;
         private StationBase _enterStation;
 
         [Inject] private readonly IHintController _hintController;
@@ -31,7 +31,7 @@ namespace Kaiju
         {
             if (!Mathf.Approximately(value, 0))
             {
-                var moveDirection = Vector2.right * value;
+                var moveDirection = Vector3.right * value;
                 StartMove(moveDirection);
             }
             else
@@ -42,23 +42,21 @@ namespace Kaiju
 
         public void PressInstantVertical(float value)
         {
-            if (_isStairs)
+            if (_enterStairs)
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f);
+                if (transform.localPosition.y >= _enterStairs.MaxActivePosY && value > 0 
+                    || transform.localPosition.y <= _enterStairs.MinActivePosY && value < 0)
+                    return;
 
-                if (hit.collider != null)
-                {
-                    if (hit.collider.CompareTag("Ground") && value < 0)
-                    {
-                        return;
-                    }
-                }
-
-                var newVelocity = rigidbody.velocity;
+                var newVelocity = _velocity;
 
                 newVelocity.y = value * config.StairsSpeed;
 
-                rigidbody.velocity = newVelocity;
+                _velocity = newVelocity;
+            }
+            else
+            {
+                _velocity.y = 0;
             }
         }
 
@@ -76,9 +74,12 @@ namespace Kaiju
         private void FixedUpdate()
         {
             CalculateVelocity();
+
+            rigidbody.velocity = Vector2.zero;
+            transform.localPosition += _velocity;
         }
 
-        private void StartMove(Vector2 moveDirection)
+        private void StartMove(Vector3 moveDirection)
         {
             _stopMoveTween?.Kill();
             _moveDirection = moveDirection;
@@ -88,7 +89,7 @@ namespace Kaiju
             TurnScale(moveDirection);
         }
 
-        private void TurnScale(Vector2 moveDirection)
+        private void TurnScale(Vector3 moveDirection)
         {
             var localScale = transform.localScale;
 
@@ -103,39 +104,40 @@ namespace Kaiju
 
         private void StopMove()
         {
-            _moveDirection = Vector2.zero;
-            var timeToStopMove = Mathf.InverseLerp(0, config.MaxVelocity, Mathf.Abs(rigidbody.velocity.x)) * config.MaxTimeToStopMove;
+            _moveDirection = Vector3.zero;
+            var timeToStopMove = Mathf.InverseLerp(0, config.MaxVelocity, Mathf.Abs(_velocity.x)) * config.MaxTimeToStopMove;
 
             _stopMoveTween?.Kill();
-            _stopMoveTween = DOVirtual.Float(rigidbody.velocity.x, 0, timeToStopMove,
+            _stopMoveTween = DOVirtual.Float(_velocity.x, 0, timeToStopMove,
                 value =>
                 {
-                    var newVelocity = rigidbody.velocity;
+                    var newVelocity = _velocity;
                     newVelocity.x = value;
 
-                    rigidbody.velocity = newVelocity;
+                    _velocity = newVelocity;
                 }).OnComplete(() => animator.SetBool(IS_MOVE_PARAM, false))
                 .SetEase(Ease.Linear).SetAutoKill(this);
         }
 
         private void CalculateVelocity()
         {
-            if (_moveDirection == Vector2.zero) return;
+            if (_moveDirection == Vector3.zero) return;
 
-            var velocity = rigidbody.velocity;
+            var velocity = _velocity;
 
             var newVelocity = velocity + _moveDirection * config.MoveSpeed;
 
             newVelocity.x = Mathf.Clamp(newVelocity.x, -config.MaxVelocity, config.MaxVelocity);
 
-            rigidbody.velocity = newVelocity;
+            _velocity = newVelocity;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Stairs"))
+            if (other.TryGetComponent(out Stairs stairs))
             {
-                _isStairs = true;
+                _enterStairs = stairs;
+
                 _cacheGravity = rigidbody.gravityScale;
                 rigidbody.gravityScale = 0;
             }
@@ -148,9 +150,10 @@ namespace Kaiju
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Stairs"))
+            if (other.TryGetComponent(out Stairs stairs))
             {
-                _isStairs = false;
+                _enterStairs = null;
+
                 rigidbody.gravityScale = _cacheGravity;
             }
 

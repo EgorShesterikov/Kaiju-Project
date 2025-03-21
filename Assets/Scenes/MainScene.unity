@@ -1917,14 +1917,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat Robot
       objectReference: {fileID: 0}
-    - target: {fileID: 4561225293037159034, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.018
-      objectReference: {fileID: 0}
-    - target: {fileID: 6452921432308871509, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
-      propertyPath: hintComponent
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7275539755167261926, guid: be1a163fdd5f6de418f2d3ba140ee0a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
