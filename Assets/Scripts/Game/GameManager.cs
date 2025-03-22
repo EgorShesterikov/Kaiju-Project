@@ -7,6 +7,10 @@ namespace Kaiju
 {
     public class GameManager : MonoBehaviour
     {
+        [Header("UI")] 
+        [SerializeField] private HudManager hudManager;
+
+        [Header("Game Play")]
         [SerializeField] private Player player;
         [SerializeField] private CombatRobot combatRobot;
         [SerializeField] private GameCamera gameCamera;
@@ -17,12 +21,22 @@ namespace Kaiju
 
         private Tween _startPosRobotTween;
 
-        private void Start()
+        private void Awake()
         {
-            StartPlay();
+            hudManager.OnGameStarted += GameStarted;
         }
 
-        private void StartPlay()
+        private void OnDestroy()
+        {
+            hudManager.OnGameStarted -= GameStarted;
+        }
+
+        private void Start()
+        {
+            hudManager.ShowMainWindow(null, true);
+        }
+
+        private void GameStarted()
         {
             _startPosRobotTween = combatRobot.transform.DOMoveY(0.1f, 2f)
                 .SetEase(Ease.OutBack)
