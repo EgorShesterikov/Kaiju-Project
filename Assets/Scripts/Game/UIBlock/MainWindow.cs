@@ -38,7 +38,7 @@ namespace Kaiju
 
         private void Update()
         {
-            if (_isActive)
+            if (IsDisplay)
             {
                 var selectedObject = EventSystem.current.currentSelectedGameObject;
 

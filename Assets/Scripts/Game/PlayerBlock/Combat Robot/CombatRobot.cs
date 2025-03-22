@@ -25,11 +25,12 @@ namespace Kaiju
 
         public float DefaultYPosition => _defaultYPosition;
 
-        public void Activated()
+        public void Activated(bool value)
         {
             _defaultYPosition = transform.position.y;
+            _activeLifeTime = 0;
 
-            _isActive = true;
+            _isActive = value;
         }
 
         public void ChangeLiquid(float value)

@@ -7,23 +7,24 @@ namespace Kaiju
     [RequireComponent(typeof(CanvasGroup))]
     public abstract class Window : MonoBehaviour
     {
-        private const float CHANGE_ACTIVE_DURATION = 0.1f;
-
         [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private float changeActiveDuration = 0.1f;
 
-        protected bool _isActive;
+        private bool _isDisplay;
 
         private Tween _changeActiveTween;
 
+        public bool IsDisplay => _isDisplay;
+
         public virtual void Show(Action callBack = null, bool instant = false)
         {
-            _isActive = true;
+            _isDisplay = true;
 
             if (!instant)
             {
 
                 _changeActiveTween?.Kill();
-                _changeActiveTween = canvasGroup.DOFade(1, CHANGE_ACTIVE_DURATION)
+                _changeActiveTween = canvasGroup.DOFade(1, changeActiveDuration).SetUpdate(true)
                     .OnKill(() =>
                     {
                         canvasGroup.blocksRaycasts = true;
@@ -42,7 +43,7 @@ namespace Kaiju
 
         public virtual void Hide(Action callBack = null, bool instant = false)
         {
-            _isActive = false;
+            _isDisplay = false;
 
             canvasGroup.blocksRaycasts = false;
             canvasGroup.interactable = false;
@@ -50,7 +51,7 @@ namespace Kaiju
             if (!instant)
             {
                 _changeActiveTween?.Kill();
-                _changeActiveTween = canvasGroup.DOFade(0, CHANGE_ACTIVE_DURATION)
+                _changeActiveTween = canvasGroup.DOFade(0, changeActiveDuration).SetUpdate(true)
                     .OnKill(() => callBack?.Invoke());
             }
             else

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,13 @@ namespace Kaiju
         [SerializeField] private Transform targetInstantHints;
 
         private List<GameObject> _viewHintCollection = new();
+
+        public override void Show(Action callBack = null, bool instant = false)
+        {
+            if (_viewHintCollection.Count == 0) return;
+
+            base.Show(callBack, instant);
+        }
 
         public void DisplayTargetHintControl(HintControlData hintControlData)
         {
